@@ -2,25 +2,25 @@
  <div>
     <!-- <Header v-bind:title="title"  @change="updateTitle($event)"/> 
      -->
-   <Postitem/> 
+   <!-- <Postitem/>  -->
    <!-- <Footer v-bind:title="title" @change="updateTitle($event)"/>  -->
-<!-- <TodoList /> -->
+ <TodoList /> 
  </div>
 
 </template>
 
 <script>
 // import Profile from './components/Profile';
- import Postitem from './components/Postitem';
-// import TodoList from './components/TodoList'
+//  import Postitem from './components/Postitem';
+ import TodoList from './components/TodoList'
 // import Header  from './components/Header';
 //  import Footer from './components/Footer';
 
 export default {
   name: 'App',
   components: {
-   Postitem
-  // TodoList
+  //  Postitem
+  TodoList
   
   },
   data() {
