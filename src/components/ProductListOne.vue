@@ -32,23 +32,30 @@
 </template> 
 
 <script>
-
+import {mapGetters} from 'vuex';
+import {mapActions} from  'vuex';
 export default {
     // props:['pricepackages']
     computed:{
         pricepackages(){
             return this.$store.state.pricepackages;
         },
-          saleonPricepackages (){
-           return  this.$store.getters. saleonPricepackages;
-        }
+        //   saleonPricepackages (){
+        //    return  this.$store.getters. saleonPricepackages;
+        // }
+        ...mapGetters([
+            'saleonPricepackages'
+        ])
     },
     methods:{
-        reducePrice:function(amount){
+        // reducePrice:function(amount){
          
-        //    this.$store.commit('reducePrice');
-           this.$store.dispatch('reducePrice',amount);
-        }
+        // //    this.$store.commit('reducePrice');
+        //    this.$store.dispatch('reducePrice',amount);
+        // },
+        ...mapActions([
+              'reducePrice'
+        ])
         //    this.$store.state.pricepackages.forEach(pricepackage=> {
         //          pricepackage.price -=1
         //     });
