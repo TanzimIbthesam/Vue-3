@@ -16,7 +16,7 @@
             
           </div>
           <div class="w-1/5 ml-2">
-              <button @click="reducePrice" class="buttonsend mt-32">Reduce Price</button>
+              <button @click="reducePrice(4)" class="buttonsend mt-32">Reduce Price</button>
           </div>
           
           
@@ -44,9 +44,10 @@ export default {
         }
     },
     methods:{
-        reducePrice:function(){
+        reducePrice:function(amount){
          
-           this.$store.commit('reducePrice');
+        //    this.$store.commit('reducePrice');
+           this.$store.dispatch('reducePrice',amount);
         }
         //    this.$store.state.pricepackages.forEach(pricepackage=> {
         //          pricepackage.price -=1
