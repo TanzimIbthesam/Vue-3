@@ -1,5 +1,6 @@
 <template>
 <body class="bg-gray-100">
+    <Navbar />
     <div class="flex justify-center items-center h-screen mx-auto">
         <div class="xl:w-1/3  w-full border border-none bg-white p-10 rounded-2xl border-box shadow-2xl">
             <div class="space-y-2 xl:ml-16 ml-0">
@@ -24,7 +25,11 @@
 </template>
 
 <script>
+import Navbar from '../views/Navbar'
 export default {
+    components:{
+        Navbar
+    }
 
 }
 </script>
