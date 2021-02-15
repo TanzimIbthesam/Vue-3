@@ -5,6 +5,8 @@ import Posts from '../views/Posts.vue'
 import Addpost from '../components/Addpost.vue'
 import Profile from '../views/Profile.vue'
 import SinglePost from '../views/SinglePost.vue'
+import Navbar from '../views/Navbar.vue'
+import LandingPage from  '../views/LandingPage.vue'
 
 const routes = [
   {
@@ -19,8 +21,8 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
-    component: Login
+    name: 'landingpage',
+    component: LandingPage
   },
 
     {
@@ -38,6 +40,11 @@ const routes = [
     name: 'individualpost',
     component:SinglePost
   },
+  {
+    path:'/navbar',
+    name:'navbar',
+    component:Navbar
+  }
 
 ]
 

@@ -1,13 +1,16 @@
 <template>
 
-  <div class="bg-blue-400  w-full">
+  <div class="bg-blue-400  w-full" @click="addClick">
         <div class="mx-auto max-w-5xl flex justify-between p-4">
-            <div class="flex">  
+            <div class="flex mainnav">  
               <router-link to="/"> <p class="text-gray-100 font-medium text-xl cursor-pointer">Vue Forum</p></router-link>
              
-              <span class="text-white font-semibold text-xl pl-2 cursor-pointer">
+              
                 <router-link :to="{name:'addpost'}">Add a Post</router-link>
-                </span></div>
+             
+                  <button @click="close" class="bg-yellow-300 px-6 py-1 text-bold font-serif ml-24">Add Click</button>
+                </div>
+              
            
             <div class="flex justify-between ">
                     <div>
@@ -52,7 +55,7 @@ account_circle
       
     
       <form method="POST" action="#">
-        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
+        <button @click="addClick" type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
           Sign Out <i class="fas fa-outdent    "></i>
         </button>
       </form>
@@ -86,7 +89,10 @@ export default {
         },
         openNotification(){
             return this.isNotificationOpen =! this.isNotificationOpen
-        }
+        },
+       close(){
+         this.$emit('close')
+       }
 
     }
 

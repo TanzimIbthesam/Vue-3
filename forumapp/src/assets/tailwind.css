@@ -3,3 +3,14 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+.mainnav a{
+    @apply text-white font-semibold text-xl pl-2 cursor-pointer 
+
+}
+
+a.router-link-active{
+ @apply   border-b-4 border-green-500
+
+}
