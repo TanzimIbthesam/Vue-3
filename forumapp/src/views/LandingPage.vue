@@ -5,8 +5,8 @@
     </div>
     
    
-<Signup v-if="activeTab==='Signup' " :loginmessage="loginmessage" @toggleSignup="toggleLogin()"/> 
-    <Login v-if="activeTab==='Login'" :signupmessage="signupmessage" @toggleLogin="toggleSignup()"  />
+<Signup v-if="activeTab==='Signup' " :loginmessage="loginmessage" @toggleSignup="toggleSignup()"/> 
+    <Login v-if="activeTab==='Login'" :signupmessage="signupmessage" @toggleLogin="toggleLogin()"  />
 </body>
 
 
@@ -39,15 +39,35 @@ export default {
     methods: {
         toggleSignup(){
             console.log("clicked");
-        //   this.ActiveTab='Signup'
-        this.activeTab='Signup'
+    //  this.ActiveTab='Signup'
+         this.activeTab='Login'
          
             
             
         
         },
         toggleLogin(){
-            this.activeTab='Login'
+            this.activeTab='Signup'
+        },
+        toggleswitch(){
+
+         if(this.activeTab='Login'){
+            
+         }else{
+             
+         }
+           
+            // if(this.activeTab='Signup'){
+            //     console.log("Clicked");
+            //     return ;
+            // }
+            //  if(this.activeTab='Login'){
+            //      console.log("Clicked");
+            //     return Login;
+            // }
+            
+        
+
         }
     },
 

@@ -3,10 +3,11 @@ import Home from '../views/Home.vue'
 import Login from '../components/Login.vue'
 import Posts from '../views/Posts.vue'
 import Addpost from '../components/Addpost.vue'
-import Profile from '../views/Profile.vue'
+// import Profile from '../views/Profile.vue'
 import SinglePost from '../views/SinglePost.vue'
 import Navbar from '../views/Navbar.vue'
 import LandingPage from  '../views/LandingPage.vue'
+import Profileinfo from '../views/profile/ProfilePage'
 
 const routes = [
   {
@@ -28,7 +29,7 @@ const routes = [
     {
     path: '/profile',
     name: 'profile',
-    component: Profile
+    component: Profileinfo
   },
    {
     path: '/addpost',
