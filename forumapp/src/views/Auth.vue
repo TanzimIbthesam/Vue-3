@@ -49,28 +49,8 @@ export default {
         toggleLogin(){
             this.activeTab='Signup'
         },
-        toggleswitch(){
-
-         if(this.activeTab='Login'){
-            
-         }else{
-             
-         }
-           
-            // if(this.activeTab='Signup'){
-            //     console.log("Clicked");
-            //     return ;
-            // }
-            //  if(this.activeTab='Login'){
-            //      console.log("Clicked");
-            //     return Login;
-            // }
-            
-        
-
-        }
-    },
-
+     
+    }
 }
 </script>
 

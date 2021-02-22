@@ -6,7 +6,7 @@ import Addpost from '../components/Addpost.vue'
 // import Profile from '../views/Profile.vue'
 import SinglePost from '../views/SinglePost.vue'
 import Navbar from '../views/Navbar.vue'
-import LandingPage from  '../views/LandingPage.vue'
+import Auth from  '../views/Auth.vue'
 import Profileinfo from '../views/profile/ProfilePage'
 
 const routes = [
@@ -22,8 +22,8 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'landingpage',
-    component: LandingPage
+    name: 'auth',
+    component: Auth
   },
 
     {
@@ -34,7 +34,10 @@ const routes = [
    {
     path: '/addpost',
     name: 'addpost',
-    component:Addpost
+    component:Addpost,
+    meta: {
+            auth: true
+         }
   },
     {
     path: '/posts/10',
