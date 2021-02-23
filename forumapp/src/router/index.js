@@ -13,20 +13,20 @@ import Random from '../components/Random'
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser;
   console.log('current user in auth guard: ', user)
+
   if (!user) {
     next({ name: 'auth' })
   } else {
     next()
   }
 }
-// const redirectToHomePage = (to, from, next) => {
-//   let user = projectAuth.currentUser
-//   if (user) {
-//     next(false)
-//   } else {
-//     next()
-//   }
-// }
+const redirectToHomePage = (to, from, next) => {
+  let user = auth.currentUser
+  
+  if (to.name == 'auth' && user) next({ name: 'Posts' })
+  else  next()
+  
+}
 const routes = [
   {
     path: '/',
@@ -42,16 +42,21 @@ const routes = [
     path: '/login',
     name: 'auth',
     component: Auth,
-    beforeEnter: (to, from,next) => {
-      // reject the navigation
-       let user = auth.currentUser;
-      if(user){
-        next(false)
-      }else{
-        next(true)
-      }
+   beforeEnter: redirectToHomePage
+
+    
+    // beforeEnter: (to, from,next) => {
+    //   // reject the navigation
+    //    let user = auth.currentUser;
+    //   if(user){
+    //     this.$router.replace({name:'Posts'})
+    //   }else{
+    //     next(true)
+    //   }
       
-    },
+    // },
+    
+    
   
 },
 
@@ -92,23 +97,10 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
 // router.beforeEach((to, from, next) => {
-//   const requiresAuth=to.matched.some(record=>record.meta.requiresAuth);
-//   const isAuthenticated=auth.currentUser
-// //  console.log(isAuthenticated);
-//  console.log("isauthenticated", isAuthenticated);
-//   if(requiresAuth && !isAuthenticated){
-//    next({name:'auth'})
-//  }
-//  else{
-//    next()
-//  }
-//  if(!requiresAuth && isAuthenticated){
-//    next({name:'Posts'})
-//    console.log("user is authenticated");
-//  }
-//   });
+//   if (to.name == 'auth' && auth.currentUser) next({ name: 'Posts' })
+//   else next()
+// })
 
 
 

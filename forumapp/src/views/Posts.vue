@@ -1,7 +1,7 @@
 
 <template>
 <div class="home">
-    
+{{ userName }}
   <Navbar />
 
   </div>
@@ -86,9 +86,21 @@ thumb_down
 </template>
 <script>
 import Navbar from './Navbar';
+import { auth } from '../firebase/config'
 export default {
     components:{
-        Navbar
+        Navbar,
+        
+    },
+    computed:{
+        userName(){
+            let user=auth.currentUser;
+            if(user){
+                      return  auth.currentUser.email;
+            }
+         
+             
+        }
     }
 
 }
