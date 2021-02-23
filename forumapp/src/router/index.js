@@ -19,7 +19,14 @@ const requireAuth = (to, from, next) => {
     next()
   }
 }
-
+// const redirectToHomePage = (to, from, next) => {
+//   let user = projectAuth.currentUser
+//   if (user) {
+//     next(false)
+//   } else {
+//     next()
+//   }
+// }
 const routes = [
   {
     path: '/',
@@ -35,6 +42,16 @@ const routes = [
     path: '/login',
     name: 'auth',
     component: Auth,
+    beforeEnter: (to, from,next) => {
+      // reject the navigation
+       let user = auth.currentUser;
+      if(user){
+        next(false)
+      }else{
+        next(true)
+      }
+      
+    },
   
 },
 
