@@ -8,6 +8,17 @@ import SinglePost from '../views/SinglePost.vue'
 import Navbar from '../views/Navbar.vue'
 import Auth from  '../views/Auth.vue'
 import Profileinfo from '../views/profile/ProfilePage'
+import { auth } from '../firebase/config'
+import Random from '../components/Random'
+const requireAuth = (to, from, next) => {
+  let user = auth.currentUser;
+  console.log('current user in auth guard: ', user)
+  if (!user) {
+    next({ name: 'auth' })
+  } else {
+    next()
+  }
+}
 
 const routes = [
   {
@@ -23,8 +34,9 @@ const routes = [
   {
     path: '/login',
     name: 'auth',
-    component: Auth
-  },
+    component: Auth,
+  
+},
 
     {
     path: '/profile',
@@ -35,9 +47,10 @@ const routes = [
     path: '/addpost',
     name: 'addpost',
     component:Addpost,
-    meta: {
-            auth: true
-         }
+ beforeEnter: requireAuth
+  
+   
+   
   },
     {
     path: '/posts/10',
@@ -48,6 +61,12 @@ const routes = [
     path:'/navbar',
     name:'navbar',
     component:Navbar
+  },
+  {
+    path:'/random',
+    name:'random',
+    component:Random,
+    
   }
 
 ]
@@ -56,5 +75,28 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   const requiresAuth=to.matched.some(record=>record.meta.requiresAuth);
+//   const isAuthenticated=auth.currentUser
+// //  console.log(isAuthenticated);
+//  console.log("isauthenticated", isAuthenticated);
+//   if(requiresAuth && !isAuthenticated){
+//    next({name:'auth'})
+//  }
+//  else{
+//    next()
+//  }
+//  if(!requiresAuth && isAuthenticated){
+//    next({name:'Posts'})
+//    console.log("user is authenticated");
+//  }
+//   });
+
+
+
+
+
+
 
 export default router
