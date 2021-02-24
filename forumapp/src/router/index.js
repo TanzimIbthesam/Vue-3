@@ -45,16 +45,7 @@ const routes = [
    beforeEnter: redirectToHomePage
 
     
-    // beforeEnter: (to, from,next) => {
-    //   // reject the navigation
-    //    let user = auth.currentUser;
-    //   if(user){
-    //     this.$router.replace({name:'Posts'})
-    //   }else{
-    //     next(true)
-    //   }
-      
-    // },
+    
     
     
   

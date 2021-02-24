@@ -11,6 +11,9 @@
                 <label for=""> <p class="pt-2">Enter your password</p></label>
                
                 <input type="password" v-model="password" class="border-b-2 border-gray-300  w-4/5 py-1" name="" id=""><br>
+                <label for="">Enter your username</label><br>
+                <input type="text" v-model="userName" class="border-b-2 border-gray-300 w-4/5  py-1" name="" id=""><br>
+               
                 <button class="px-6 py-1 bg-purple-600 text-white font-serif rounded-md mt-3">SignUp</button><br>
                 <div class="mt-2">
                       <p @click="toggleSignup"  class="text-md font-serif font-light cursor-pointer" href="">{{loginmessage}}</p><br>
@@ -30,29 +33,14 @@
 
 <script>
 
-import { auth } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 // import Navbar from '../views/Navbar'
 // import { ref } from 'vue'
+import Signup from '../composables/Signup'
 
 export default {
     props:['loginmessage'],
-//     setup() {
-//          const { error, signup } = useSignup()
-//     // refs
-//     const userName = ref('')
-//     const email = ref('')
-//     const password = ref('')
 
-//     // useSignup
-   
-
-//     const handleSubmit = async () => {
-//       await signup(email.value, password.value, userName.value)
-//       console.log('user signed up')
-//     }
-
-//     return { userName, email, password, handleSubmit }
-//   }
 data() {
     return {
         email:'',
@@ -65,19 +53,26 @@ data() {
       toggleSignup(){
           this.$emit('toggleSignup')
       },
+      
    async   handleSubmit(){
        try {
-            const user=await auth.createUserWithEmailAndPassword(this.email,this.password);
+            const res=await auth.createUserWithEmailAndPassword(this.email,this.password);
+       let newusername  =await  db.collection('users')
+       .doc(auth.currentUser.uid)
+            .set({
+                userName:this.userName
+            })
             
-            console.log(user);
-if(user){
+           
+            console.log(res,newusername);
+if(res){
      this.$router.replace({name:'Posts'})
 
             }
 
             
            
-            return user;
+            return res,newusername;
             
             
            
@@ -89,8 +84,14 @@ if(user){
       
 
       }
+
         
     },
+    computed:{
+        async signup(){
+            
+        }
+    }
 }
    
 
