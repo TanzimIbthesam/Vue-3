@@ -3,13 +3,15 @@
   <div class="bg-blue-400  w-full" @click="addClick">
         <div class="mx-auto max-w-5xl flex justify-between p-4">
             <div class="flex mainnav">  
-              <router-link to="/"> <p class="text-gray-100 font-medium text-xl cursor-pointer">Vue Forum</p></router-link>
+              <router-link to="/"><p class="text-white font-light subpixel-antialiased text-xl font-mono italic cursor-pointer">Vue Forum</p></router-link>
              
               
-                <router-link :to="{name:'addpost'}">Add a Post</router-link>
-             
-                  <button @click="close" class="bg-yellow-300 px-6 py-1 text-bold font-serif ml-24">Add Click</button>
+                <router-link :to="{name:'addpost'}"><p class="text-white font-light subpixel-antialiased text-xl font-mono italic cursor-pointer">Add a post</p></router-link>
+               
+                 
                 </div>
+                 <router-link :to="{name:'profile'}"> <p class="text-white font-light subpixel-antialiased text-xl font-mono italic cursor-pointer">Welcome-{{username}}</p></router-link>
+            
               
            
             <div class="flex justify-between " :class="[isLoggedIn ? 'block' : 'hidden']">
@@ -74,14 +76,15 @@ account_circle
 </template>
 
 <script>
-import { auth } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 
 export default {
     data() {
         return {
             isProfileOpen:false,
             isNotificationOpen:false,
-            isLoggedIn:false
+            isLoggedIn:false,
+            username:''
             
         }
     },
@@ -108,14 +111,36 @@ export default {
 
     },
     created(){
-      auth.onAuthStateChanged((user)=>{
+        
+      
+    },
+       mounted(){
+         auth.onAuthStateChanged((user)=>{
         if(user){
           this.isLoggedIn=true;
         }else{
           this.isLoggedIn=false;
         }
-      })
-    }
+      });
+        let user=auth.currentUser;
+        if(user){
+
+       db.collection("users").doc(auth.currentUser.uid)
+  .get()
+  .then(doc=>{
+      if(doc.exists){
+          const data=doc.data();
+          console.log(data.userName);
+          this.username=data.userName;
+      }else{
+          console.log("Doc does not exists");
+      }
+  }) 
+        }
+       
+   
+
+    },
 
 }
 </script>

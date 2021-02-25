@@ -1,7 +1,7 @@
 
 <template>
 <div class="home">
- Username-{{ username }} 
+
   <Navbar />
 
   </div>
@@ -86,11 +86,11 @@ thumb_down
 </template>
 <script>
 import Navbar from './Navbar';
-import { auth, db } from '../firebase/config'
+
 export default {
     data() {
         return {
-            username:''
+            // username:''
         }
     },
       computed:{
@@ -110,25 +110,7 @@ export default {
 //         }
 
     },
-    created(){
-        let user=auth.currentUser;
-        if(user){
-
-       db.collection("users").doc(auth.currentUser.uid)
-  .get()
-  .then(doc=>{
-      if(doc.exists){
-          const data=doc.data();
-          console.log(data.userName);
-          this.username=data.userName;
-      }else{
-          console.log("Doc does not exists");
-      }
-  }) 
-        }
-   
-
-    },
+ 
 
   
     components:{
