@@ -10,7 +10,7 @@
                
                  
                 </div>
-                 <router-link :to="{name:'profile'}"> <p class="text-white font-light subpixel-antialiased text-xl font-mono italic cursor-pointer">Welcome-{{username}}</p></router-link>
+                 <router-link :to="{name:'profile'}"> <p class="text-white font-light subpixel-antialiased text-xl font-mono italic cursor-pointer"> <span :class="[ isLoggedIn ? 'block' : 'hidden']">Welcome- {{username}}</span></p></router-link>
             
               
            

@@ -54,7 +54,7 @@ thumb_down
   
 </template>
 <script>
-import { db } from '../firebase/config';
+import { auth, db } from '../firebase/config';
 import Navbar from './Navbar';
 
 export default {
@@ -68,9 +68,10 @@ export default {
 //  
       },
     mounted() {
-           
-           
- db.collection("posts")
+     
+
+      
+             db.collection("posts")
 
     .get()
     
@@ -88,7 +89,13 @@ export default {
         })
 
     })
+
+      
+             
+           
   
+       
+
  
     
 },
