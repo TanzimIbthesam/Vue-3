@@ -38,25 +38,58 @@ export default {
     data() {
         return {
             title:'',
-            description:''
+            description:'',
+            username:''
+           
         }
     },
     methods: {
         addPost(){
             let uid=auth.currentUser.uid;
             let userEmail=auth.currentUser.email;
+               
+  
             console.log(userEmail);
             console.log(uid);
             db.collection('posts').add({
                 title:this.title,
                 description:this.description,
-                user_email:userEmail
+                user_email:userEmail,
+                user_name:this.username
+                
+                
 
             })
             this.$router.replace({name:'Posts'})
+
         }
     },
+        mounted(){
+      
+        let user=auth.currentUser;
+        
 
+    db.collection("users")
+       .doc(user.uid)
+  .get()
+  .then(doc=>{
+      if(doc.exists){
+          const data=doc.data();
+          console.log(data.userName);
+          this.username=data.userName
+        
+      }else{
+          console.log("Doc does not exists");
+      }
+  });
+
+ 
+  
+        
+       
+   
+
+    },
 }
 </script>
 
