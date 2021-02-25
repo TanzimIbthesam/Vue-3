@@ -13,6 +13,9 @@
                 <input type="password" v-model="password" class="border-b-2 border-gray-300  w-4/5 py-1" name="" id=""><br>
                 <label for="">Enter your username</label><br>
                 <input type="text" v-model="userName" class="border-b-2 border-gray-300 w-4/5  py-1" name="" id=""><br>
+                
+                <label for="">Enter your bio</label><br>
+                <input type="text" v-model="bio" class="border-b-2 border-gray-300 w-4/5  py-1" name="" id=""><br>
                
                 <button class="px-6 py-1 bg-purple-600 text-white font-serif rounded-md mt-3">SignUp</button><br>
                 <div class="mt-2">
@@ -45,7 +48,8 @@ data() {
     return {
         email:'',
         password:'',
-        userName:''
+        userName:'',
+        bio:''
     }
   
 },
@@ -60,7 +64,8 @@ data() {
        let newusername  =await  db.collection('users')
        .doc(auth.currentUser.uid)
             .set({
-                userName:this.userName
+                userName:this.userName,
+                bio:this.bio
             })
             
            
