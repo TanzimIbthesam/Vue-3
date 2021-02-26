@@ -46,7 +46,7 @@ thumb_down
                 </div>
              
  <div>
-           <div class="ml-4 xl:ml-0 ">
+           <div class="ml-4 xl:ml-0 " :class="[hidebuttonsforUnauthenticatedUser ? 'hidden' : 'null']">
          
                 <div>
                                         <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
@@ -148,6 +148,7 @@ export default {
         return {
             // username:''
             authUserposts:[],
+            hidebuttonsforUnauthenticatedUser:false,
             
             unauthUsersposts:[],
         }
@@ -158,14 +159,7 @@ export default {
     created() {
      
 
-      let user=auth.currentUser;
-     
-      if(user){
-           console.log(user.email);
-          console.log("Current user is authenticated");
-      }else{
-          console.log("Current user is not authenticated");
-      }
+      
              db.collection("posts")
 
     .get()
@@ -192,24 +186,34 @@ export default {
         //    }
          let data=doc.data();
              
-            if(auth.currentUser){
+          let authUser=auth.currentUser;
+          if (authUser){
+             
+               
+
                  if(auth.currentUser.email == data.user_email){
                  
-               
+               this.hidebuttonsforUnauthenticatedUser=false;
                 this.authUserposts.push(data)
              
                
-               
+                 }
                 
 
 
-           }else{
+           else{
               
                this.unauthUsersposts.push(data)
               
            }
+          }else{
+                this.authUserposts.push(data);
+                this.hidebuttonsforUnauthenticatedUser=true;
+                console.log(this.hidebuttonsforUnauthenticatedUser);
 
-            }
+          }
+
+            
              
 
              
