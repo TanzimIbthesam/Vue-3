@@ -54,7 +54,8 @@ const routes = [
     {
     path: '/profile',
     name: 'profile',
-    component: Profileinfo
+    component: Profileinfo,
+    beforeEnter: requireAuth
   },
    {
     path: '/addpost',
@@ -88,10 +89,6 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-// router.beforeEach((to, from, next) => {
-//   if (to.name == 'auth' && auth.currentUser) next({ name: 'Posts' })
-//   else next()
-// })
 
 
 
