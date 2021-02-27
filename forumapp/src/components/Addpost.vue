@@ -58,11 +58,16 @@ export default {
                 user_name:this.username
                 
                 
-
+     
+            }).then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+                     this.$router.replace({name:'Posts'})
             })
-            this.$router.replace({name:'Posts'})
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+       
 
-        }
+        })
     },
         mounted(){
       
@@ -89,7 +94,8 @@ export default {
        
    
 
-    },
+    }
+}
 }
 </script>
 

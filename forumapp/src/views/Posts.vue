@@ -8,6 +8,7 @@
 
 <body class="bg-gray-100">
     <div>
+          
         <div class="max-w-5xl mx-auto p-4" v-for="authUserpost in authUserposts" :key="authUserpost">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
@@ -46,17 +47,23 @@ thumb_down
                 </div>
              
  <div>
-           <div class="ml-4 xl:ml-0 " :class="[hidebuttonsforUnauthenticatedUser ? 'hidden' : 'null']">
-         
-                <div>
+              
+           <div class="ml-2 xl:ml-0 " :class="[!hidebuttons ? 'hidden' :'block' ]">
+                 <div>
                                         <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
 create
 </span></button>
-                      <button class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">
+                      <button @click.prevent="deletePost()" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">
 delete
 </span></button>
 
                 </div>
+              
+                 
+               </div>
+               
+         
+              
    
                   </div>
  </div>
@@ -67,11 +74,11 @@ delete
             
         </div>
      
-    </div>
+  
 
     </div>
     
-        <div class="max-w-5xl mx-auto p-4" v-for="unauthUserspost  in   unauthUsersposts" :key="unauthUserspost">
+          <div class="max-w-5xl mx-auto p-4" v-for="unauthUserspost  in   unauthUsersposts" :key="unauthUserspost">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
              <router-link :to="{name:'individualpost'}">
@@ -109,19 +116,7 @@ thumb_down
                 </div>
              
  <div>
-           <div class="ml-4 xl:ml-0 hidden" >
-      
-                <div v-if="currentUserPosts">
-                                        <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
-create
-</span></button>
-                      <button class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">
-delete
-</span></button>
-
-                </div>
-   
-                  </div>
+          
  </div>
             </div>
            
@@ -130,7 +125,7 @@ delete
             
         </div>
      
-    </div>
+    </div>  
 
     
         
@@ -148,14 +143,18 @@ export default {
         return {
             // username:''
             authUserposts:[],
-            hidebuttonsforUnauthenticatedUser:false,
+            key:'',
+           
+            hidebuttons:false,
+           
             
-            unauthUsersposts:[],
+              unauthUsersposts:[],
         }
     },
       computed:{
 //  
       },
+      
     created() {
      
 
@@ -165,53 +164,47 @@ export default {
     .get()
     
     .then(querySnapshot=>{
+        
+        
         querySnapshot.forEach((doc)=>{
           
-        //     let data=doc.data();
-            
-        //    console.log(data);
-         
-        //    console.log(auth.currentUser.email);
-        //    console.log(data.user_email);
-         
-        //    if(auth.currentUser.email !== data.user_email){
-               
-              
-               
-        //         this.currentUserPosts=false;
-              
-                
-
-
-        //    }
+       console.log(doc.id);
          let data=doc.data();
-             
+              
           let authUser=auth.currentUser;
+           
           if (authUser){
              
                
-
+                
                  if(auth.currentUser.email == data.user_email){
-                 
-               this.hidebuttonsforUnauthenticatedUser=false;
-                this.authUserposts.push(data)
+               
+              this.authUserposts.push(data);
+                  this.hidebuttons=true;
              
                
-                 }
-                
-
-
-           else{
+                 }else{
               
-               this.unauthUsersposts.push(data)
+                this.unauthUsersposts.push(data)
+               
+               
+
+                
+                //  console.log(this.hidebuttons);
               
            }
           }else{
                 this.authUserposts.push(data);
                 this.hidebuttonsforUnauthenticatedUser=true;
                 console.log(this.hidebuttonsforUnauthenticatedUser);
+                 this.hidebuttons=false;
 
           }
+
+          const deletref=db.collection("posts")
+
+ 
+     
 
             
              
@@ -236,9 +229,32 @@ export default {
  
     
 },
- 
+ methods: {
 
-  
+     deletePost(){
+         db.collection("posts")
+         
+
+    .get()
+    .then((querySnapshot)=>{
+       
+        querySnapshot.forEach((doc)=>{
+            let data=doc.data();
+          
+           if(auth.currentUser.email == data.user_email){
+               doc.ref.delete();
+              
+           }
+           
+        })
+        
+
+    })
+    
+   
+ }
+
+ },
     components:{
         Navbar,
         
