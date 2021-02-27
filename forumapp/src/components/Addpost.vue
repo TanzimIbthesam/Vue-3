@@ -58,22 +58,14 @@ export default {
                 user_name:this.username
                 
                 
-     
-            }).then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-                     this.$router.replace({name:'Posts'})
             })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-       
-
-        })
+            this.$router.replace({name:'Posts'})
+        }
     },
         mounted(){
       
         let user=auth.currentUser;
         
-
     db.collection("users")
        .doc(user.uid)
   .get()
@@ -87,18 +79,14 @@ export default {
           console.log("Doc does not exists");
       }
   });
-
  
   
         
        
    
-
-    }
-}
+    },
 }
 </script>
 
 <style>
-
 </style>

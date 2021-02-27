@@ -8,8 +8,7 @@
 
 <body class="bg-gray-100">
     <div>
-          
-        <div class="max-w-5xl mx-auto p-4" v-for="authUserpost in authUserposts" :key="authUserpost">
+        <div class="max-w-5xl mx-auto p-4" v-for="authUserpost in authUserposts" :key="authUserpost.id">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
              <router-link :to="{name:'individualpost'}">
@@ -47,23 +46,17 @@ thumb_down
                 </div>
              
  <div>
-              
-           <div class="ml-2 xl:ml-0 " :class="[!hidebuttons ? 'hidden' :'block' ]">
-                 <div>
+           <div class="ml-4 xl:ml-0 " :class="[hidebuttonsforUnauthenticatedUser ? 'hidden' : 'null']" >
+         
+                <div>
                                         <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
 create
 </span></button>
-                      <button @click.prevent="deletePost()" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">
+                      <button @click="deletePost(id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">
 delete
 </span></button>
 
                 </div>
-              
-                 
-               </div>
-               
-         
-              
    
                   </div>
  </div>
@@ -74,11 +67,11 @@ delete
             
         </div>
      
-  
+    </div>
 
     </div>
     
-          <div class="max-w-5xl mx-auto p-4" v-for="unauthUserspost  in   unauthUsersposts" :key="unauthUserspost">
+        <div class="max-w-5xl mx-auto p-4" v-for="unauthUserspost  in   unauthUsersposts" :key="unauthUserspost">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
              <router-link :to="{name:'individualpost'}">
@@ -116,7 +109,7 @@ thumb_down
                 </div>
              
  <div>
-          
+        
  </div>
             </div>
            
@@ -125,7 +118,7 @@ thumb_down
             
         </div>
      
-    </div>  
+    </div>
 
     
         
@@ -137,124 +130,109 @@ thumb_down
 <script>
 import { auth, db } from '../firebase/config';
 import Navbar from './Navbar';
-
 export default {
     data() {
         return {
             // username:''
             authUserposts:[],
-            key:'',
-           
-            hidebuttons:false,
-           
+            hidebuttonsforUnauthenticatedUser:false,
             
-              unauthUsersposts:[],
+            unauthUsersposts:[],
         }
     },
-      computed:{
-//  
-      },
-      
-    created() {
-     
-
-      
-             db.collection("posts")
-
+    methods:{
+           deletePost(id) {
+            db.collection("posts")
     .get()
     
     .then(querySnapshot=>{
-        
-        
         querySnapshot.forEach((doc)=>{
-          
-       console.log(doc.id);
-         let data=doc.data();
-              
+  
+         let datas=doc.data();
+         console.log(datas);
+
+      
+         console.log(newdoc);
+
+         
+             
           let authUser=auth.currentUser;
-           
           if (authUser){
              
                
-                
                  if(auth.currentUser.email == data.user_email){
-               
-              this.authUserposts.push(data);
-                  this.hidebuttons=true;
+                     console.log(doc.id);
+                    
+                 
+              
              
                
-                 }else{
-              
-                this.unauthUsersposts.push(data)
-               
-               
-
+                 }
                 
-                //  console.log(this.hidebuttons);
+        
+          }
+
+      
+        
+      
+    })
+      })
+           },
+    },
+     
+      
+    created() {
+     
+      
+             db.collection("posts")
+    .get()
+    
+    .then(querySnapshot=>{
+        querySnapshot.forEach((doc)=>{
+  
+         let data=doc.data();
+             
+          let authUser=auth.currentUser;
+          if (authUser){
+             
+               
+                 if(auth.currentUser.email == data.user_email){
+                 
+               this.hidebuttonsforUnauthenticatedUser=false;
+                this.authUserposts.push(data)
+             
+               
+                 }
+                
+           else{
+              
+               this.unauthUsersposts.push(data)
               
            }
           }else{
                 this.authUserposts.push(data);
                 this.hidebuttonsforUnauthenticatedUser=true;
                 console.log(this.hidebuttonsforUnauthenticatedUser);
-                 this.hidebuttons=false;
-
           }
-
-          const deletref=db.collection("posts")
-
- 
-     
-
             
              
-
              
               
         })
-
     });
-
     
     
-
    
-
       
              
            
   
        
-
  
     
 },
- methods: {
-
-     deletePost(){
-         db.collection("posts")
-         
-
-    .get()
-    .then((querySnapshot)=>{
-       
-        querySnapshot.forEach((doc)=>{
-            let data=doc.data();
-          
-           if(auth.currentUser.email == data.user_email){
-               doc.ref.delete();
-              
-           }
-           
-        })
-        
-
-    })
-    
-   
- }
-
- },
+ 
+  
     components:{
         Navbar,
         
@@ -262,13 +240,9 @@ export default {
   
                   
        
-
          }
     
-
-
 </script>
 
 <style>
-
 </style>
