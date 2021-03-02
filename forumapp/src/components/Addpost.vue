@@ -45,13 +45,13 @@ export default {
     },
     methods: {
         addPost(){
-            let uid=auth.currentUser.uid;
+            // let uid=auth.currentUser.uid;
             let userEmail=auth.currentUser.email;
-               
+             db.collection("users")
+        .doc(auth.currentUser.uid)   
   
-            console.log(userEmail);
-            console.log(uid);
-            db.collection('posts').add({
+            
+           db.collection('posts').add({
                 title:this.title,
                 description:this.description,
                 user_email:userEmail,
@@ -78,14 +78,15 @@ export default {
       }else{
           console.log("Doc does not exists");
       }
-  });
+  })
  
   
         
        
    
-    },
+        }
 }
+
 </script>
 
 <style>

@@ -67,7 +67,7 @@ const routes = [
    
   },
     {
-    path: '/posts/10',
+    path: '/posts',
     name: 'individualpost',
     component:SinglePost
   },
