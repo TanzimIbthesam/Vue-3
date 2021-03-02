@@ -1,12 +1,12 @@
 <template>
 <body>
     <div>
-           <Navbar />
+    <Navbar/>
     </div>
     
    
 <Signup v-if="activeTab==='Signup' " :loginmessage="loginmessage" @toggleSignup="toggleSignup()"/> 
-    <Login v-if="activeTab==='Login'" :signupmessage="signupmessage" @toggleLogin="toggleLogin()"  />
+<Login v-if="activeTab==='Login'" :signupmessage="signupmessage" @toggleLogin="toggleLogin()"  />
 </body>
 
 
@@ -36,16 +36,12 @@ export default {
           
         }
     },
-    methods: {
+    methods:{
         toggleSignup(){
             console.log("clicked");
     //  this.ActiveTab='Signup'
          this.activeTab='Login'
-         
-            
-            
-        
-        },
+         },
         toggleLogin(){
             this.activeTab='Signup'
         },

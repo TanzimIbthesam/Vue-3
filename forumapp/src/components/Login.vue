@@ -64,24 +64,19 @@ export default {
         toggleLogin(){
             this.$emit('toggleLogin');
         },
-      async  logIn(){
+           async logIn(){
          
              try {
             const user=await auth.signInWithEmailAndPassword(this.email,this.password);
             
             console.log(user);
-if(user){
-     this.$router.replace({name:'Posts'})
-
-            }
-
             
-           
+            if(user){
+            this.$router.replace({name:'Posts'})
+                }
+
             return user;
-            
-            
-           
-       } catch (error) {
+            }catch (error) {
            console.log(error);
            
        }

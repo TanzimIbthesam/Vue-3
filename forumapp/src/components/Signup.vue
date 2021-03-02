@@ -58,10 +58,10 @@ data() {
           this.$emit('toggleSignup')
       },
       
-   async   handleSubmit(){
-       try {
+   async handleSubmit(){
+       try{
             const res=await auth.createUserWithEmailAndPassword(this.email,this.password);
-       let newusername  =await  db.collection('users')
+       let newusername = await db.collection('users')
        .doc(auth.currentUser.uid)
             .set({
                 userName:this.userName,
@@ -70,21 +70,13 @@ data() {
             
            
             console.log(res,newusername);
-if(res){
-     this.$router.replace({name:'Posts'})
-
+          if(res){
+              this.$router.replace({name:'Posts'})
             }
-
-            
-           
             return res,newusername;
-            
-            
-           
-       } catch (error) {
+            }catch (error){
            console.log(error);
-           
-       }
+           }
       
       
 

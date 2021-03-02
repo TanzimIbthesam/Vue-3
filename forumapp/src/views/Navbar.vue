@@ -14,7 +14,7 @@
             
               
            
-            <div class="flex justify-between " :class="[isLoggedIn ? 'block' : 'hidden']">
+            <div class="flex justify-between " :class="[isLoggedIn ?'block' :'hidden']">
                     <div>
                         
                         <span class="material-icons text-white cursor-pointer -ml-8 notifications" @click=" openNotification">settings_power
@@ -22,8 +22,8 @@
 
 <div class="relative inline-block text-left">
   <div>
-             <span class="material-icons icon cursor-pointer text-white " @click="openProfile">
-account_circle
+<span class="material-icons icon cursor-pointer text-white " @click="openProfile">
+       account_circle
 </span>
   </div>
 
@@ -58,7 +58,7 @@ account_circle
     
       <form  method="POST" action="#">
         <button @click.prevent="logOut" type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
-          Sign Out <i class="fas fa-outdent    "></i>
+          Sign Out <i class="fas fa-outdent"></i>
         </button>
       </form>
     </div>
@@ -125,7 +125,7 @@ export default {
         let user=auth.currentUser;
         if(user){
 
-       db.collection("users").doc(auth.currentUser.uid)
+  db.collection("users").doc(auth.currentUser.uid)
   .get()
   .then(doc=>{
       if(doc.exists){
