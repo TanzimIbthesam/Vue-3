@@ -175,16 +175,16 @@ export default {
                 this.authUserposts.push(data);
                 
                 
+            }else{
+
+                     this.unauthUsersposts.push(data);
             }
-            if(auth.currentUser.email !== data.user_email){
-                this.unauthUsersposts.push(data);
-               
-            }
+            
                 
              }else{
                  this.isLoggedIn=false;
-                 this.authUserposts.push(data);
-                 this.unauthUsersposts.push(data);
+                //  this.authUserposts.push(data);
+                  this.unauthUsersposts.push(data);
              }
             
            
