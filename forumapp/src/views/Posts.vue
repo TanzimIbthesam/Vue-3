@@ -10,8 +10,11 @@
         <div class="max-w-5xl mx-auto p-4" v-for="authUserpost in authUserposts" :key="authUserpost.id">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
-             <router-link :to="{name:'individualpost'}">
+             <!-- <router-link :to="{name:'individualpost'}"> -->
+                  <!-- <router-link :to="{name:'Singlepost',params:{id:job.id,details:job.details,position:job.position}}"> <h2>{{ job.position }}</h2></router-link> -->
                  
+                  <router-link :to="{name:'individualpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description}}">
+                      
             <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{authUserpost.title}}</p>
              </router-link>
             <p class="text-gray-600 font-serif text-md  px-4">
@@ -67,8 +70,12 @@ thumb_down
        <div class="max-w-5xl mx-auto p-4" v-for="unauthUserpost in unauthUsersposts" :key="unauthUserpost.id">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
-             <router-link :to="{name:'individualpost'}">
+             <!-- <router-link :to="{name:'individualpost',params:{id:unauthUserpost.id}}">
                  
+            <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{unauthUserpost.title}}</p>
+             </router-link> -->
+              <router-link :to="{name:'individualpost',params:{id:unauthUserpost.id,title:unauthUserpost.title,description:unauthUserpost.description}}">
+                      
             <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{unauthUserpost.title}}</p>
              </router-link>
             <p class="text-gray-600 font-serif text-md  px-4">
@@ -130,12 +137,15 @@ thumb_down
 import { auth, db } from '../firebase/config';
 import Navbar from './Navbar';
 export default {
+    
     data() {
         return {
             // username:''
             authUserposts:[],
             isLoggedIn:false,
             isCurrentUser:false,
+           title:'',
+           description:'',
             
             unauthUsersposts:[],
             
@@ -188,7 +198,7 @@ export default {
              }
             
            
-           
+           console.log(this.$route.params.id);
            
             
             

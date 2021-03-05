@@ -69,8 +69,16 @@ const routes = [
     {
     path: '/posts',
     name: 'individualpost',
-    component:SinglePost
+    component:SinglePost,
+    props:true
   },
+  
+  //   {
+  //   path: '/posts/:id',
+  //   name: 'individualpost',
+  //   component:SinglePost,
+  //   props:true
+  // },
   {
     path:'/navbar',
     name:'navbar',
