@@ -13,7 +13,7 @@
              <!-- <router-link :to="{name:'individualpost'}"> -->
                   <!-- <router-link :to="{name:'Singlepost',params:{id:job.id,details:job.details,position:job.position}}"> <h2>{{ job.position }}</h2></router-link> -->
                  
-                  <router-link :to="{name:'individualpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description}}">
+                  <router-link :to="{name:'individualpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description,user_name:authUserpost.user_name}}">
                       
             <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{authUserpost.title}}</p>
              </router-link>
@@ -74,7 +74,7 @@ thumb_down
                  
             <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{unauthUserpost.title}}</p>
              </router-link> -->
-              <router-link :to="{name:'individualpost',params:{id:unauthUserpost.id,title:unauthUserpost.title,description:unauthUserpost.description}}">
+              <router-link :to="{name:'individualpost',params:{id:unauthUserpost.id,title:unauthUserpost.title,description:unauthUserpost.description,user_name:unauthUserpost.user_name}}">
                       
             <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{unauthUserpost.title}}</p>
              </router-link>

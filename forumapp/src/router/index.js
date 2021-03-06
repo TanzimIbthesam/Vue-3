@@ -70,7 +70,8 @@ const routes = [
     path: '/posts',
     name: 'individualpost',
     component:SinglePost,
-    props:true
+    props:true,
+    beforeEnter: requireAuth
   },
   
   //   {

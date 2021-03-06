@@ -11,7 +11,7 @@
 
 
             </p>
-            <p class="text-gray-600 font-serif text-md  px-4">Posted by-John Doe on 2/3/2021</p>
+            <p class="text-gray-600 font-serif text-md  px-4">Posted by-{{user_name}} on 2/3/2021</p>
             <div>
                 <span><span class="material-icons px-4 p-1 text-2xl text-blue-300">
                     <a class="text-2xl" href="">comment_bank</a>
@@ -62,7 +62,7 @@ delete
               <p class="font-serif px-4 text-md text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita tempore, in quo libero adipisci fugit labore tenetur aliquid, porro eligendi cupiditate voluptatibus sapiente? Fuga ipsum debitis praesentium voluptatibus soluta!</p>
                   <div class="xl:flex xl:flex-row sm:flex sm:flex-col justify-between w-11/12">
                   <div>
-                          <p class="font-serif px-4 text-xl text-gray-600 py-1">Posted on 10/03/2020 by <a href="">John Doe</a> </p>
+                          <p class="font-serif px-4 text-xl text-gray-600 py-1">Posted on 10/03/2020 by <a href="">{{user_name}}</a> </p>
                   </div>
                   <div class="ml-4 xl:ml-0">
                       <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
@@ -99,7 +99,8 @@ export default {
         return{
               id:this.$route.params.id,
               title:this.$route.params.title,
-              description:this.$route.params.description
+              description:this.$route.params.description,
+              user_name:this.$route.params.user_name
               
         } 
      
