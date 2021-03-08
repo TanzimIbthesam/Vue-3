@@ -3,13 +3,15 @@ import Home from '../views/Home.vue'
 import Login from '../components/Login.vue'
 import Posts from '../views/Posts.vue'
 import Addpost from '../components/Addpost.vue'
-// import Profile from '../views/Profile.vue'
-import SinglePost from '../views/SinglePost.vue'
+
+
 import Navbar from '../views/Navbar.vue'
 import Auth from  '../views/Auth.vue'
 import Profileinfo from '../views/profile/ProfilePage'
 import { auth } from '../firebase/config'
 import Random from '../components/Random'
+import updatePost from '../components/updatePost.vue'
+import fullPost from '../views/fullPost.vue'
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser;
   console.log('current user in auth guard: ', user)
@@ -66,20 +68,25 @@ const routes = [
    
    
   },
-    {
-    path: '/posts',
-    name: 'individualpost',
-    component:SinglePost,
-    props:true,
-    beforeEnter: requireAuth
+   
+  {
+    path: '/post/:title',
+    name: 'fullpost',
+    component:fullPost,
+     props:true,
+    // beforeEnter: requireAuth
   },
   
-  //   {
-  //   path: '/posts/:id',
-  //   name: 'individualpost',
-  //   component:SinglePost,
-  //   props:true
-  // },
+    {
+      path: '/posts/:title',
+      name: 'updatepost',
+      component:updatePost,
+      props:true,
+      beforeEnter: requireAuth
+    },
+
+  
+  
   {
     path:'/navbar',
     name:'navbar',

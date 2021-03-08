@@ -1,5 +1,5 @@
 <template>
-<body class="bg-gray-100">
+  <body class="bg-gray-100">
      <Navbar />
     <div class="max-w-5xl mx-auto p-4">
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
@@ -12,22 +12,7 @@
 
             </p>
             <p class="text-gray-600 font-serif text-md  px-4">Posted by-{{user_name}} on 2/3/2021</p>
-            <div>
-                <span><span class="material-icons px-4 p-1 text-2xl text-blue-300">
-                    <a class="text-2xl" href="">comment_bank</a>
-
-</span></span>
-                <span>
-                    <span class="material-icons">
-thumb_up 
-</span>
-                </span>
-                 <span>
-                    <span class="material-icons">
-thumb_down
-</span>
-</span>
-            </div>
+          
 
        
             
@@ -88,26 +73,21 @@ delete
 
     
 </body>
-  
 </template>
 
 <script>
-import Navbar from './Navbar';
+import Navbar from './Navbar'
 export default {
-    props:['id','title','description'],
-    data(){
-        return{
-              id:this.$route.params.id,
-              title:this.$route.params.title,
-              description:this.$route.params.description,
-              user_name:this.$route.params.user_name
-              
-        } 
-     
-       
-    },
     components:{
         Navbar
+    },
+    data(){
+        return{
+            id:this.$route.params.id,
+            title:this.$route.params.title,
+            description:this.$route.params.description,
+            user_name:this.$route.params.user_name
+        }
     }
 
 }
