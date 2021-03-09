@@ -89,7 +89,8 @@ export default {
             // description:this.$route.params.description,
             // user_name:this.$route.params.user_name
         }
-    }
+    },
+     
 
 }
 </script>

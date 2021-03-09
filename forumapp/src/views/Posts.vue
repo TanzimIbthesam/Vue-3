@@ -168,7 +168,8 @@ export default {
      deletePost(id){
      const newpost=db.collection("posts")
        .doc(id);
-       newpost.delete();
+        newpost.delete();
+    
        
      }
     },

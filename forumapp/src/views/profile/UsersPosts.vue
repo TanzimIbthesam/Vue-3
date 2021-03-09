@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:max-w-5xl  mx-auto" v-for="allpost in allposts" :key="allpost">
+  <div class="xl:max-w-5xl  mx-auto" v-for="allpost in allposts" :key="allpost.id">
          <div class="border border-gray-300 rounded-md space-x-4 flex flex-col justify-center py-5 mt-4" >
              <h1 class="text-xl font-medium font-serif pl-4">{{allpost.title}}</h1>
              <p class="text-md font-medium font-serif">{{allpost.description}}</p>
@@ -8,10 +8,10 @@
                           <p class="font-serif px-4 text-xl text-gray-600 py-1">Posted on 10/03/2020 by <a href="">{{allpost.user_name}}</a> </p>
                   </div>
                   <div class="ml-4 xl:ml-1">
-                      <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
+                      <button  class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
 create
 </span></button>
-                      <button class="px-1 py-1 bg-red-700 text-white font-sans rounded-md ml-1"><span class="material-icons">
+                      <button @click="deletePost(allpost.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md ml-1"><span class="material-icons">
 delete
 </span></button>
                   </div>
@@ -34,29 +34,44 @@ data() {
         
     }
 },
-mounted() {
-           let userEmail=auth.currentUser.email;
-           console.log();
- db.collection("posts")
+methods:{
+    deletePost(id){
+        console.log("clicked");
+     const newpost=db.collection("posts")
+       .doc(id);
+       newpost.delete();
+       
+     }
 
-    .get()
-    
-    .then(querySnapshot=>{
-        querySnapshot.forEach((doc)=>{
-            console.log(doc.id, " => ", doc.data());
-            let data=doc.data();
-            // this.title=data.title;
-            // this.description=data.description;
-            // console.log(data.description);
-            // console.log(data.title);
-            if(auth.currentUser.email == data.user_email){
+},
+created() {
+          
+ let postsRef=db.collection("posts");
+
+ postsRef.onSnapshot((snap)=>{
+     this.allposts=[];
+     snap.forEach((doc)=>{
+         let data=doc.data();
+         data.id=doc.id;
+         if(auth.currentUser.email == data.user_email){
                 this.allposts.push(data);
 
             }
-              
-        })
+         
+     })
+ })
 
-    })
+// .then(querySnapshot=>{
+//         querySnapshot.forEach((doc)=>{
+//             console.log(doc.id, " => ", doc.data());
+//             let data=doc.data();
+//             data.id=doc.id;
+           
+            
+              
+//         })
+
+//     })
   
  
     
