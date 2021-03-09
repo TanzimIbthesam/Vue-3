@@ -78,7 +78,7 @@ export default {
          })
         
          .then(()=>{
-               this.$router.replace({name:'Posts'})
+               this.$router.replace({name:'profile'})
              console.log("Post updated");
 
          }).catch(err=>{

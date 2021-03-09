@@ -29,7 +29,7 @@ import UsersPosts from './UsersPosts'
 export default {
     data() {
         return {
-            activeTab:'ProfileInfo',
+            activeTab:'UsersPosts',
             currentActiveTab:false
         }
     },

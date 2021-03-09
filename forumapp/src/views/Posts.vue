@@ -10,14 +10,8 @@
         <div class="max-w-5xl mx-auto p-4" v-for="authUserpost in authUserposts" :key="authUserpost.id">
        
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
-             <!-- <router-link :to="{name:'individualpost'}"> -->
-                  <!-- <router-link :to="{name:'Singlepost',params:{id:job.id,details:job.details,position:job.position}}"> <h2>{{ job.position }}</h2></router-link> -->
-                 
-                  <!-- <router-link :to="{name:'individualpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description,user_name:authUserpost.user_name}}">
-                      
-            <p class="text-gray-600 font-serif text-2xl text-center px-4" href="">{{authUserpost.title}}</p>
-             </router-link> -->
-             <router-link :to="{name:'fullpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description,user_name:authUserpost.description}}">
+            
+             <router-link :to="{name:'fullpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description,user_name:authUserpost.user_name}}">
                  <p class="text-gray-600 font-serif text-2xl text-center px-4">{{authUserpost.title}}</p></router-link>
              <p class="text-gray-600 font-serif text-md  px-4">
                 {{ authUserpost.description }}
@@ -52,7 +46,7 @@ thumb_down
            <div  class="ml-4 xl:ml-0 block">
          
                 <div>
-                    <router-link :to="{name:'updatepost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description}}">
+                    <router-link :to="{name:'updatepost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.user_name}}">
                      <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">create</span></button>
                      
                     </router-link>
