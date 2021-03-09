@@ -9,7 +9,7 @@ import Navbar from '../views/Navbar.vue'
 import Auth from  '../views/Auth.vue'
 import Profileinfo from '../views/profile/ProfilePage'
 import { auth } from '../firebase/config'
-import Random from '../components/Random'
+
 import updatePost from '../components/updatePost.vue'
 import fullPost from '../views/fullPost.vue'
 const requireAuth = (to, from, next) => {
@@ -78,7 +78,7 @@ const routes = [
   },
   
     {
-      path: '/posts/:title',
+      path: '/edit/:id',
       name: 'updatepost',
       component:updatePost,
       props:true,
@@ -92,12 +92,7 @@ const routes = [
     name:'navbar',
     component:Navbar
   },
-  {
-    path:'/random',
-    name:'random',
-    component:Random,
-    
-  }
+  
 
 ]
 

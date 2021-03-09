@@ -78,15 +78,16 @@ delete
 <script>
 import Navbar from './Navbar'
 export default {
+    props:['id','title','description','user_name'],
     components:{
         Navbar
     },
     data(){
         return{
-            id:this.$route.params.id,
-            title:this.$route.params.title,
-            description:this.$route.params.description,
-            user_name:this.$route.params.user_name
+            // id:this.$route.params.id,
+            // title:this.$route.params.title,
+            // description:this.$route.params.description,
+            // user_name:this.$route.params.user_name
         }
     }
 

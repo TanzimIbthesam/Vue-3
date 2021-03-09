@@ -17,8 +17,7 @@
                 </form>
                <div class="mt-2">
                       <p @click="toggleLogin" class="text-md font-serif font-light cursor-pointer" href="" >{{signupmessage}}-</p><br>
-                      <!-- Dont have account? Signup -->
-                <!-- <a class="text-md font-serif font-light" href="">Forgot password?</a> -->
+                   
                 </div> 
               
             </div>

@@ -6,8 +6,8 @@
            <div class="xl:w-1/4  w-full  bg-white p-3 rounded-xl border-box shadow-2xl">
 
             <div class=" xl:ml-16 ml-0 space-y-1">
-                    <h1 >{{title}}</h1>
-                    <form action="" @submit.prevent="updatePost(id)">
+                    
+                    <form action="" @submit.prevent="updatePost()">
                            <label for="" class="text-xl font-semibold">Enter your title</label><br>
                
                   <input type="text" v-model="title" class="border border-b-2 border-gray-200  py-1 w-5/6 rounded-md" name="" id=""><br>
@@ -35,24 +35,31 @@ export default {
     components:{
         Navbar
     },
+      props:['id','title','description'],
     data() {
         return {
-            id:this.$route.params.id,
-            title:this.$route.params.title,
-            description:this.$route.params.description,
-            post:'',
+            //  id:this.$route.params.id,
+            //  title:this.$route.params.title,
+            //  description:this.$route.params.description,
+          
+            //  newTitle:'',
+            //  newDescription:''
             
            
         }
     },
      created(){
-       let dbRef = db.collection('posts').doc(this.$route.params.id);
-            dbRef.get().then((doc) => {
-                this.post = doc.data();
-                console.log(doc.data());
-            }).catch((error) => {
-                console.log(error)
-            })
+       let dbRef = db.collection('posts')
+       dbRef.onSnapshot((snap)=>{
+           snap.forEach(doc => {
+               var data=doc.data();
+               console.log(data);
+               data.id=doc.id;
+               console.log(this.$route.params.id);
+               console.log(data.id);
+               
+           });
+       })
   
         
        
@@ -64,8 +71,14 @@ export default {
             // let userEmail=auth.currentUser.email;
          db.collection("posts")
         .doc(this.$route.params.id)   
-         .update(this.post)
+         .update({
+              title:this.title,
+             description:this.description
+
+         })
+        
          .then(()=>{
+               this.$router.replace({name:'Posts'})
              console.log("Post updated");
 
          }).catch(err=>{
