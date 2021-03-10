@@ -109,7 +109,7 @@ export default {
         },
         deleteComment(){
 
-         let delCmnt=db.collection("comments").doc(this.id);
+         let delCmnt=db.collection("comments");
          console.log(delCmnt);
            
         }
