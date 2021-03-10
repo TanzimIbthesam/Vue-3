@@ -21,7 +21,7 @@
           <div class="rounded-2xl border border-gray-300 bg-white border-box shadow-2xl ">
                 <textarea name="" v-model="comment" id="" cols="4" rows="4" class="border border-gray-200 w-full "></textarea>
                 <div v-if='comment'>
-                    <button @click.prevent="addComment" class="px-4 py-1 bg-blue-600 text-white font-sans">Comment</button>
+                    <button @click.prevent="addComment()" class="px-4 py-1 bg-blue-600 text-white font-sans">Comment</button>
                 </div>
           </div>
            <h1 class="text-xl font-sans font-medium text-center p-3 text-2xl">Comments</h1>
@@ -37,7 +37,7 @@
                   <div v-if="isAuthUser">
                       <div class="ml-4 xl:ml-0">
                    
-                         <button @click="deleteComment()" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button>
+                         <button @click.prevent="deleteComment(authUserComment.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button>
 
                     
                       
@@ -97,7 +97,6 @@ export default {
                   user_email:auth.currentUser.email,
                   user_name:this.username,
                   post_id:this.postId
-
             })
             .then(()=>{
                 
@@ -105,15 +104,13 @@ export default {
             }).catch((err)=>{
                 console.log(err);
             })
-
         },
-        deleteComment(){
-
-         let delCmnt=db.collection("comments");
-         console.log(delCmnt);
+        deleteComment(id){
+         let delCmnt=db.collection("comments").doc(id);
+         delCmnt.delete();
+         
            
         }
-
     },
     created(){
          let user=auth.currentUser;
@@ -124,7 +121,8 @@ export default {
          }
         //users ref
   let newuser=auth.currentUser;
-    db.collection("users")
+  if(newuser){
+      db.collection("users")
        .doc(newuser.uid)
   .get()
   .then(doc=>{
@@ -137,6 +135,9 @@ export default {
           console.log("Doc does not exists");
       }
   })
+
+  }
+    
     //    let postsRef=db.collection("posts");
        const ref = db.collection('posts').doc(this.id).get()
      
@@ -150,38 +151,36 @@ export default {
                console.log(this.id);
               console.log(this.postId);
           
-
            }
        })
        //Comments 
        const commenstRef=db.collection("comments");
           
        commenstRef.onSnapshot((snap)=>{
+           this.authUserComments=[];
            snap.forEach(doc => {
             //    this.authUserComments=[]
-
-
                let commentsdata=doc.data();
                     if(commentsdata.post_id==this.id){
-                      this.authUserComments.push(commentsdata);
+                      this.authUserComments.push({
+                          id:doc.id,
+                          content:commentsdata.content,
+                         user_name:commentsdata.user_name,
+                        post_id:commentsdata.post_id
+
+                      });
                       
                     }
-
                     
                
            });
-
        })
-
     }
    
-
     
      
-
 }
 </script>
 
 <style>
-
 </style>

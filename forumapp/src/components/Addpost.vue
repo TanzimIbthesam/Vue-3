@@ -59,7 +59,7 @@ export default {
                 
                 
             })
-            this.$router.replace({name:'profile'})
+             this.$router.replace({name:'profile'})
         }
     },
         mounted(){

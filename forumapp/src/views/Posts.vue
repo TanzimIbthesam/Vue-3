@@ -113,7 +113,7 @@ thumb_down
          
                 <div>
                     <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">create</span></button>
-                      <button @click="deletePost(authUserpost.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button></div>
+                      <button @click="deletePost()" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button></div>
                     </div>
                    </div>
                    </div>
