@@ -15,14 +15,13 @@
                        <!-- <button  class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">
 create
 </span></button>  -->
-  <router-link :to="{name:'updatepost',params:{id:allpost.id,title:allpost.title,description:allpost.description}}">
-                     <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">create</span></button>
-                     
-                    </router-link> 
-                      <button @click="deletePost(allpost.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md ml-1"><span class="material-icons">
-delete
-</span></button>
-                  </div>
+           <router-link :to="{name:'updatepost',params:{id:allpost.id,title:allpost.title,description:allpost.description}}">
+            <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">create</span></button>
+            </router-link> 
+            <button @click="deletePost(allpost.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md ml-1"><span class="material-icons">
+           delete
+          </span></button>
+            </div>
 
               </div>
          </div>

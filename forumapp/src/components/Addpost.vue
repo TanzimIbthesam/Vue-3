@@ -47,8 +47,8 @@ export default {
         addPost(){
             // let uid=auth.currentUser.uid;
             let userEmail=auth.currentUser.email;
-             db.collection("users")
-        .doc(auth.currentUser.uid)   
+        //      db.collection("users")
+        // .doc(auth.currentUser.uid)   
   
             
            db.collection('posts').add({
