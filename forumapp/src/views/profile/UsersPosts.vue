@@ -46,8 +46,8 @@ methods:{
         console.log("clicked");
      const newpost=db.collection("posts")
        .doc(id);
-       console.log(newpost);
-      //  newpost.delete();
+      
+        newpost.delete();
        
      }
 

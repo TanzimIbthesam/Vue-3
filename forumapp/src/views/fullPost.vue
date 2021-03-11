@@ -35,26 +35,29 @@
                           <p class="font-serif px-4 text-xl text-gray-600 py-1">Posted on 10/0/2020 by <a href="">{{authUserComment.user_name}}</a> </p>
                   </div>
                   <div v-if="isAuthUser">
-                      <div class="ml-4 xl:ml-0">
+                      <div class="ml-4 xl:ml-0 ">
                    
                          <button @click.prevent="deleteComment(authUserComment.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button>
 
-                    
-                      
+                    </div>
+                    </div>
                   </div>
-
+                 </div>
+     </div>
+          <div v-for="unauthUserComment in unauthUserComments" :key="unauthUserComment.id">
+              <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl" >
+              <p class="font-serif px-4 text-md text-black">{{unauthUserComment.content}}</p>
+                  <div class="xl:flex xl:flex-row sm:flex sm:flex-col justify-between w-11/12">
+                  <div>
+                          <p class="font-serif px-4 text-xl text-gray-600 py-1">Posted on 10/10/2020 by <a href="">{{unauthUserComment.user_name}}</a> </p>
                   </div>
-                  
-
-              </div>
-
-          </div>
-     
-
+                 
+                 
+                  </div>
+                 </div>
+     </div>
           </div>
           
-
-           </div>
       
            
            
@@ -82,6 +85,7 @@ export default {
              useremail:'',
             postId:'',
             authUserComments:[],
+            unauthUserComments:[],
             isAuthUser:false,
             showButtons:true
             
@@ -106,7 +110,9 @@ export default {
             })
         },
         deleteComment(id){
+
          let delCmnt=db.collection("comments").doc(id);
+         
          delCmnt.delete();
          
            
@@ -158,19 +164,37 @@ export default {
           
        commenstRef.onSnapshot((snap)=>{
            this.authUserComments=[];
+           this.unauthUserComments=[];
            snap.forEach(doc => {
             //    this.authUserComments=[]
                let commentsdata=doc.data();
-                    if(commentsdata.post_id==this.id){
-                      this.authUserComments.push({
+                    if(commentsdata.post_id==this.id ){
+
+                        if(commentsdata.user_email==auth.currentUser.email){
+                            this.authUserComments.push({
                           id:doc.id,
                           content:commentsdata.content,
                          user_name:commentsdata.user_name,
                         post_id:commentsdata.post_id
 
                       });
+                      this.comment='';
+                            
+                        }else{
+                               this.unauthUserComments.push({
+                          id:doc.id,
+                          content:commentsdata.content,
+                         user_name:commentsdata.user_name,
+                        post_id:commentsdata.post_id
+
+                      });
+                     
+                        }
+                        
+                      
                       
                     }
+
                     
                
            });
