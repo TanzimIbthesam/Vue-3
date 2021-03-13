@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../components/Login.vue'
+
 import Posts from '../views/Posts.vue'
 import Addpost from '../components/Addpost.vue'
 
@@ -8,6 +8,7 @@ import Addpost from '../components/Addpost.vue'
 import Navbar from '../views/Navbar.vue'
 import Auth from  '../views/Auth.vue'
 import Profileinfo from '../views/profile/ProfilePage'
+import Modal from '../views/Modal'
 import { auth } from '../firebase/config'
 
 import updatePost from '../components/updatePost.vue'
@@ -91,6 +92,12 @@ const routes = [
     path:'/navbar',
     name:'navbar',
     component:Navbar
+  },
+  
+  {
+    path:'/modal',
+    name:'modal',
+    component:Modal
   },
   
 

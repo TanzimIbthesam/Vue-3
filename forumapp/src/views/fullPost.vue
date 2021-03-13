@@ -87,7 +87,8 @@ export default {
             authUserComments:[],
             unauthUserComments:[],
             isAuthUser:false,
-            showButtons:true
+            showButtons:true,
+            postUserName:'',
             
         }
     },
@@ -136,6 +137,7 @@ export default {
           var usersdata=doc.data();
           console.log(usersdata.userName);
           this.username=usersdata.userName
+          console.log(this.username);
         
       }else{
           console.log("Doc does not exists");
@@ -154,6 +156,9 @@ export default {
                postsdata.id=doc.id;
             
                this.postId=postsdata.id;
+               this.postUserName=postsdata.user_name;
+               console.log(this.postUserName);
+
                console.log(this.id);
               console.log(this.postId);
           
@@ -170,7 +175,7 @@ export default {
                let commentsdata=doc.data();
                     if(commentsdata.post_id==this.id ){
 
-                        if(commentsdata.user_email==auth.currentUser.email){
+                        if(commentsdata.user_email==auth.currentUser.email && this.username==this.postUserName){
                             this.authUserComments.push({
                           id:doc.id,
                           content:commentsdata.content,
@@ -181,14 +186,14 @@ export default {
                       this.comment='';
                             
                         }else{
-                               this.unauthUserComments.push({
+                          this.unauthUserComments.push({
                           id:doc.id,
                           content:commentsdata.content,
                          user_name:commentsdata.user_name,
                         post_id:commentsdata.post_id
 
                       });
-                     
+
                         }
                         
                       

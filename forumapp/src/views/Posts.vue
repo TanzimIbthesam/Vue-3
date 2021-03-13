@@ -1,14 +1,18 @@
 <template>
-<div class="home">
 
-  <Navbar />
 
-  </div>
+  
+
+
+ 
 
 <body class="bg-gray-100">
+      <Navbar /> 
+     
     <div>
         <div class="max-w-5xl mx-auto p-4" v-for="authUserpost in authUserposts" :key="authUserpost.id">
-       
+            <Modal v-if="showModal" @close="modalClose" @deleteInfo="deleteInfo(authUserpost.id)" /> 
+      
         <div class="rounded-2xl border border-gray-300 bg-white py-8 border-box shadow-2xl">
             
              <router-link :to="{name:'fullpost',params:{id:authUserpost.id,title:authUserpost.title,description:authUserpost.description,user_name:authUserpost.user_name}}">
@@ -30,15 +34,10 @@
 
 
                 <span>
-                    <span class="material-icons">
-thumb_up 
-</span>
+                    <span class="material-icons">thumb_up </span>
                 </span>
                  <span>
-                    <span class="material-icons">
-thumb_down
-</span>
-</span>
+                    <span class="material-icons">thumb_down</span></span>
 
                 </div>
              
@@ -52,7 +51,8 @@ thumb_down
                     </router-link>
                     
                    
-                      <button @click="deletePost(authUserpost.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button></div>
+                      <!-- <button @click="deletePost(authUserpost.id)" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button></div> -->
+                      <button @click="modalShow()" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button></div>
                     </div>
                    </div>
                    </div>
@@ -96,25 +96,14 @@ thumb_down
 
 
                 <span>
-                    <span class="material-icons">
-thumb_up 
-</span>
+                    <span class="material-icons">thumb_up</span>
                 </span>
                  <span>
-                    <span class="material-icons">
-thumb_down
-</span>
-</span>
+                    <span class="material-icons">thumb_down</span></span>
 
                 </div>
-             
- <div >
-           <div  class="ml-4 xl:ml-0 hidden">
+             <div>
          
-                <div>
-                    <button class="px-1 py-1 bg-green-300 text-white font-sans rounded-md"><span class="material-icons">create</span></button>
-                      <button @click="deletePost()" class="px-1 py-1 bg-red-700 text-white font-sans rounded-md"><span class="material-icons">delete</span></button></div>
-                    </div>
                    </div>
                    </div>
            
@@ -136,8 +125,12 @@ thumb_down
 <script>
 import { auth, db } from '../firebase/config';
 import Navbar from './Navbar';
+import Modal from './Modal'
+
 export default {
-    
+    components:{
+        Modal,Navbar
+    },
     data() {
         return {
             // username:''
@@ -147,29 +140,43 @@ export default {
            title:'',
            description:'',
            id:'',
+           showModal:false,
             
             unauthUsersposts:[],
             
         }
     },
-    methods:{
-//            getPosts() {
-//     let postsRef= 
-//      db.collection("posts");
-
    
-// },
-     deletePost(id){
-     const newpost=db.collection("posts")
-       .doc(id);
-        newpost.delete();
-    
-       
-     }
-    },
      
       
-    created() {
+   
+  methods:{
+
+        modalShow(){
+       this.showModal=true;
+       console.log("Clicked");
+     },
+     modalClose(){
+       this.showModal=false;
+     },
+     deleteInfo(id){
+       const newpost=db.collection("posts")
+       .doc(id);
+      newpost.delete();
+      setTimeout(()=>{
+            this.modalClose();
+      },300)
+    
+
+     },
+    //  deletePost(id){
+    //  const newpost=db.collection("posts")
+    //    .doc(id);
+    //     newpost.delete();
+    
+       
+    //  }
+    }, created() {
     let postsRef=db.collection("posts");
    postsRef.onSnapshot(snap => {
         this.authUserposts = [];
@@ -221,12 +228,8 @@ export default {
  
     
 },
- 
   
-    components:{
-        Navbar,
-        
-    },
+   
   
                   
        
