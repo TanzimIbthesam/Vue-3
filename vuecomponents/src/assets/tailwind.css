@@ -3,3 +3,13 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.navclass a{
+    @apply py-4 px-2 text-green-500 border-green-500 font-semibold 
+
+}
+
+.navclass.router-link-active{
+ @apply   border-b-4 border-green-500 bg-gray-800 text-white rounded-md p-4
+
+}
