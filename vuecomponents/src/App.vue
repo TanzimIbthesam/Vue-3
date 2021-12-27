@@ -1,7 +1,8 @@
 <template>
   <!-- <switchbutton /> -->
   <!-- <activenavbar /> -->
-    <activenavbar />
+  <activenavbar /> 
+   
   <router-view />
   
 </template>
@@ -9,13 +10,15 @@
 <script>
 
 // import switchbutton from './components/MyComponents/switchbutton.vue'
-import activenavbar from './components/MyComponents/activenavbar.vue'
+ import activenavbar from './components/MyComponents/activenavbar.vue'
+import selectoptions from './components/MyComponents/activenavbar.vue'
 
 export default {
   name: 'App',
   components: {
     // switchbutton
-    activenavbar
+     activenavbar,
+    selectoptions
     
     
   }

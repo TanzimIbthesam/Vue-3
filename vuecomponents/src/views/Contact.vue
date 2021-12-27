@@ -1,10 +1,15 @@
 <template>
-  Contact Page
+  Contact Page sdfsdf
+<selectoptions />
 </template>
 
 <script>
-export default {
+import selectoptions from '../components/MyComponents/selectoptions.vue'
 
+export default {
+  components:{
+ selectoptions
+}
 }
 </script>
 

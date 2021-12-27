@@ -39,15 +39,7 @@ export default {
         }
     },
     methods:{
-        clickDiv(e){
-             console.log(e.target);
-             if(e.target){
-              return e.target.classList.add('text-blue-500')
-             }else{
-                 return e.target.classList.add('text-black-500')
-             }
-            
-        }
+      
     }
 
 }
