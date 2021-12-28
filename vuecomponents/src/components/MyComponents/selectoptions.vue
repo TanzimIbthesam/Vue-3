@@ -12,7 +12,7 @@
         
     </div>
     </div>
-   
+ 
 </div>
 
   
@@ -20,22 +20,39 @@
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
+// export default {
+//     data(){
+//         return {
+//             selected:[],
+//             checkoptions:'',
+//             isOpen:false,
+//              options: [
+//         { text: 'One', value: 'OptionOne' },
+//         { text: 'Two', value: 'OptionTwo' },
+//         { text: 'Three', value: 'OptionThree' },
+//         { text: 'Four', value: 'OptionFour' },
+         
+//       ]
+//         }
+//     }
+
+// }
+//Composition Api
 export default {
-    data(){
-        return {
-            selected:[],
-            checkoptions:'',
-            isOpen:false,
-             options: [
-        { text: 'One', value: 'OptionOne' },
+    setup(){
+       
+       const selected=ref([]);
+       const isOpen=ref(false);
+       const options=ref([
+           { text: 'One', value: 'OptionOne' },
         { text: 'Two', value: 'OptionTwo' },
         { text: 'Three', value: 'OptionThree' },
         { text: 'Four', value: 'OptionFour' },
-         
-      ]
-        }
-    }
+       ]);
 
+       return {selected,isOpen,options,name}
+    }
 }
 </script>
 
