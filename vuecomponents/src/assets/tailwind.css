@@ -9,7 +9,8 @@
 
 }
 
+
 .navclass.router-link-active{
- @apply   border-b-4 border-green-500 bg-gray-800 text-white rounded-md p-4
+ @apply   border-b-4 border-green-500 text-white rounded-md p-4 
 
 }

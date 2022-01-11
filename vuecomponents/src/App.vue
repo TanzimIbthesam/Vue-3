@@ -1,24 +1,28 @@
 <template>
   <!-- <switchbutton /> -->
-  <!-- <activenavbar /> -->
-  <activenavbar /> 
-   
-  <router-view />
+  <!-- <activenavbar />  -->
+ <activenavbarwithsvg /> 
   
+
+
+  <router-view />
+ 
 </template>
 
 <script>
+//import Activenavbarwithsvg from './components/activenavbarwithsvg.vue'
 
 // import switchbutton from './components/MyComponents/switchbutton.vue'
- import activenavbar from './components/MyComponents/activenavbar.vue'
-import selectoptions from './components/MyComponents/activenavbar.vue'
+ import activenavbarwithsvg from './components/MyComponents/activenavbarwithsvg.vue'
+// import selectoptions from './components/MyComponents/activenavbar.vue'
 
 export default {
   name: 'App',
   components: {
     // switchbutton
-     activenavbar,
-    selectoptions
+    //  activenavbar
+    activenavbarwithsvg,
+    // selectoptions
     
     
   }
