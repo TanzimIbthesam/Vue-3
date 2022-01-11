@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Contact from '../views/Contact.vue'
-
+import Notifications from '../views/Notifications.vue'
+import Messages from '../views/Messages.vue'
 
 const routes = [
   {
@@ -13,6 +14,16 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component:Contact
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component:Notifications
+  },
+  {
+    path: '/messages',
+    name: 'Messages',
+    component:Messages
   },
  
   // {
