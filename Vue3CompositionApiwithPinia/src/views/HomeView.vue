@@ -1,29 +1,36 @@
 <template>
   <div>
     <!-- Non reactive data -->
-    {{nonreacttitle}}
-    Title-{{counterData.title}}
-    <button @click="increaseCounter">Increase Counter</button>
-    Counter-{{counterData.counter}}
+ 
+    
+    <button @click="increaseCounterAmount(5)">Increase Counter</button>
+    Counter-{{counter}}
     <!-- 2 way data binding -->
-    <input type="text" v-model="counterData.title" name="" id="">
+    It is-{{oddorEven}}
+    
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import {  computed, ref, watch } from "vue";
 const counter=ref(0),title=ref("Counter Title")
-//Mot reactive data
-const nonreacttitle="Title non react"
-const increaseCounter=()=>{
-      // counter.value++
-      // title.value="Title changed"
-      counterData.counter++;
-      counterData.title="Title changed"
-  }
-const counterData=reactive({
-    counter:0,
-    title:'Counter Title'
+
+const increaseCounterAmount=amount=>{
+  console.log("clicked");
+      return counter.value+=amount
+}
+//Computed property 
+const oddorEven=computed(()=>{
+  if(counter.value%2 === 0) return "It is odd";
+  return "it is even";
+})
+
+watch(counter,(newCount,oldCount)=>{
+       console.log(oldCount);
+       
+    if(newCount===20){
+      alert("your count is 20")
+    }
 })
 </script>
 
