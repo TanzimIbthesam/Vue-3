@@ -1,37 +1,49 @@
 <template>
   <div>
-    <!-- Non reactive data -->
- 
-    
-    <button @click="increaseCounterAmount(5)">Increase Counter</button>
-    Counter-{{counter}}
-    <!-- 2 way data binding -->
-    It is-{{oddorEven}}
+             <button @click="increaseCounter">Increase Counter</button>
+             Counter-{{counter}}
     
   </div>
 </template>
 
 <script setup>
-import {  computed, ref, watch } from "vue";
-const counter=ref(0),title=ref("Counter Title")
+import { onActivated, onBeforeMount, onBeforeUnmount, onDeactivated, onMounted, onUnmounted } from "@vue/runtime-core";
+import { onBeforeUpdate, onUpdated, ref } from "vue";
+const counter=ref(0);
 
-const increaseCounterAmount=amount=>{
-  console.log("clicked");
-      return counter.value+=amount
+const increaseCounter=()=>{
+  counter.value++
 }
-//Computed property 
-const oddorEven=computed(()=>{
-  if(counter.value%2 === 0) return "It is odd";
-  return "it is even";
+
+//At time an event is triggered like a click event
+onBeforeUpdate(()=>{
+  console.log("On before update");
+})
+onUpdated(()=>{
+    console.log("Updated");
+})
+onBeforeMount(()=>{
+  console.log("On Before mount");
+})
+onMounted(()=>{
+  console.log("On Mount");
 })
 
-watch(counter,(newCount,oldCount)=>{
-       console.log(oldCount);
-       
-    if(newCount===20){
-      alert("your count is 20")
-    }
+onBeforeUnmount(()=>{
+  console.log("Before unmount");
 })
+onUnmounted(()=>{
+  console.log("Unmounted");
+})
+onActivated(()=>{
+  console.log("On Activated");
+})
+onDeactivated(()=>{
+  console.log("On Deactivateddd");
+})
+
+ 
+
 </script>
 
 <style>
