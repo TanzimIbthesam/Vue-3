@@ -11,15 +11,17 @@
     <Router-link :to="{name:'modals'}">Modals</Router-link>
     Username-{{userData.name}}
     email-{{userData.email}}
-  <RouterView :userData="userData" />
+  <RouterView  />
 </template>
 <script setup>
-import { reactive } from '@vue/reactivity'
+import { reactive,provide } from 'vue'
+
 import { RouterLink, RouterView } from 'vue-router'
 const userData=reactive({
   name:'Tanzim101',
   email:'tanzim@gmail.com'
 })
+provide('userData',userData)
 </script>
 <style>
 @import '@/assets/base.css';

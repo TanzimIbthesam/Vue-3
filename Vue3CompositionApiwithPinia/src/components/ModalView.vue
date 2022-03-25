@@ -13,7 +13,7 @@
     title="My App title "
     description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore obcaecati ipsam quisquam eligendi laudantium totam tempora, minus quo recusandae nobis quod repellendus quia, accusamus quas perspiciatis nemo illo architecto natus?"
     :is="showDarkModal?ModalDark:Modal"
-    :userData="userData"
+   
     >
         
       
@@ -35,11 +35,7 @@ const showDarkModal=ref(false);
 //   showModal.value=false
 // }
 
-const props=defineProps({
- userData:{
-   type:Object
- }
-})
+
 </script>
 <style >
 

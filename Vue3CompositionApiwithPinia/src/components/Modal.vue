@@ -18,6 +18,8 @@
 </template>
 
 <script setup>
+import { inject } from 'vue';
+
 const props=defineProps({
     
     modelValue:{
@@ -42,7 +44,7 @@ const emit=defineEmits(['update:modelValue']);
 // const handleClick=()=>{
 //     emit('update:modelValue',false);
 // }
-
+const userData=inject('userData');
 </script>
 
 <style>
