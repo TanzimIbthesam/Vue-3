@@ -2,11 +2,14 @@
   
     <teleport to=".modals-container">
     
-    <div class="modal">
-      <h1><slot name="title" /></h1>
-     <slot />
-     <!-- <button @click="showModal=false">Hide</button> -->
-  
+    <div class="modal"
+    v-if="modelValue"
+    >
+      <h1>{{title}}</h1>
+     
+     <p>{{description}}</p>
+     <button @click="handleClick">Hide Modal</button>
+     <!-- If we want to write emit in a function -->
     </div>
     </teleport>
     
@@ -14,9 +17,26 @@
 </template>
 
 <script setup>
+const props=defineProps({
+    modelValue:{
+     type:Boolean,
+     default:false
 
+    },
+  title:{
+    type:String,
+    default:'No Title specified'
+},
+description:{
+    type:String,
+    default:'No Description specified'
+}
+});
+ const emit=defineEmits(['hideModal']);
 
-
+const handleClick=()=>{
+    emit('hideModal');
+}
 
 </script>
 
