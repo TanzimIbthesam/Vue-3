@@ -3,7 +3,7 @@
     <teleport to=".modals-container">
     
     <div class="modal">
-      <h1><slot name="title" /></h1>
+      <h1>{{title}}</h1>
      <slot />
      <!-- <button @click="showModal=false">Hide</button> -->
   
@@ -14,7 +14,12 @@
 </template>
 
 <script setup>
-
+const props=defineProps({
+  title:{
+    type:String,
+    default:'No Title specified'
+}
+});
 
 
 
