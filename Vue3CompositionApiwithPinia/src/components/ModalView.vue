@@ -1,37 +1,21 @@
 <template>
-  <div class="modals">
+ <div class="modals">
     <h1>Show Modal</h1>
+    <Modal v-if="showModal" >
+       <h1 v:slot="title">My App title</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore obcaecati ipsam quisquam eligendi laudantium totam tempora, minus quo recusandae nobis quod repellendus quia, accusamus quas perspiciatis nemo illo architecto natus?</p>
+    </Modal>
     <button @click="showModal=true">Show</button>
-    <teleport to="body">
-    <div v-if="showModal" 
-    class="modal">
-      <h1>Modal heading</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore obcaecati ipsam quisquam eligendi laudantium totam tempora, minus quo recusandae nobis quod repellendus quia, accusamus quas perspiciatis nemo illo architecto natus?</p>
-     <button @click="showModal=false">Hide</button>
-  </div>
-  
-    </teleport>
     
-    </div>
+  </div>
    
 </template>
 <script setup>
-import {  ref,onMounted } from 'vue';
-const showModal=ref(false)
-
-onMounted(()=>{
-  console.log("Hello");
-})
+// import Modal from './Modal.vue'
+import {  ref } from 'vue';
+import Modal from '@/components/Modal.vue'
+const showModal=ref(false);
 </script>
-<style>
-.modal{
-  background:beige;
-  /* width:20%; */
-  padding:10px;
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-}
+<style >
+
 </style>

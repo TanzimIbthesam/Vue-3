@@ -12,12 +12,14 @@
   <!-- <router-link :to="{ name: 'post', params: { id: 1 }}"> -->
   User
 <!-- </router-link> -->
+<ModalView />
 </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 
+import { ref } from 'vue';
+import ModalView from './ModalView.vue';
 const allposts=ref([
   {id:1,title:"Post One",description:"Description One"},
   {id:2,title:"Post One",description:"Description Two"},

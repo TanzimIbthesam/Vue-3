@@ -8,6 +8,7 @@
     <!-- For named route -->
     <Router-link :to="{name:'testroute'}">Testroute</Router-link>
     <Router-link :to="{name:'posts'}">Posts</Router-link>
+    <Router-link :to="{name:'modals'}">Modals</Router-link>
   <RouterView />
 </template>
 <script setup>
