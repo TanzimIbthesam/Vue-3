@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import TestRoute from '../components/TestRoute.vue'
 import Posts from '../components/Posts.vue'
 import SinglePost from '../components/SinglePost.vue'
+import ModalView from  '../components/ModalView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/testroutess',
       name: 'testroute',
       component: TestRoute
+    },
+    {
+      path: '/modals',
+      name: 'modals',
+      component:ModalView
     },
     {
       path: '/posts',

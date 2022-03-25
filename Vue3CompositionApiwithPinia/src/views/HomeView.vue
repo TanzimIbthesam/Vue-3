@@ -11,22 +11,22 @@
 </template>
 
 <script setup>
-import { nextTick, onMounted, ref } from 'vue';
+import {  onMounted, ref } from 'vue';
  import vFocus from '../directives/vFocus.js';
   const title=ref(null);
   const counter=ref(0);
 const appTitle='My app title';
 
+
+
 const appTitleRef=ref(null);
 appTitleRef.style="color:green"
  const increaseCounter=async(amount)=>{
-  counter.value+=amount;
+
   await nextTick();
   console.log("Hello this is mounted to DOM");
   //If not async function 
-  nextTick(()=>{
-    console.log("Hello this is mounted to DOM");
-  })
+  
 }
 onMounted(()=>{
   console.log(`The app title width is ${appTitleRef.value.offsetWidth} `);
