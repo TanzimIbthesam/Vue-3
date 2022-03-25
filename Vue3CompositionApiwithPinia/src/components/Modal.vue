@@ -10,6 +10,7 @@
      <p>{{description}}</p>
      <button @click="$emit('update:modelValue',false)">Hide Modal</button>
      <!-- If we want to write emit in a function -->
+    Username is-{{userData.name}}
     </div>
     </teleport>
     
@@ -18,11 +19,15 @@
 
 <script setup>
 const props=defineProps({
+    
     modelValue:{
      type:Boolean,
      default:false
 
     },
+     userData:{
+    type:Object
+  },
   title:{
     type:String,
     default:'No Title specified'
