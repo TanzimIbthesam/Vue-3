@@ -2,7 +2,7 @@
   
     <teleport to=".modals-container">
     
-    <div class="modal"
+    <div class="modal-dark"
     v-if="modelValue"
     >
       <h1>{{title}}</h1>
@@ -41,8 +41,9 @@ const emit=defineEmits(['update:modelValue']);
 </script>
 
 <style>
-.modal{
-  background:beige;
+.modal-dark{
+  background:black;
+  color:white;
   /* width:20%; */
   padding:10px;
   position:absolute;
