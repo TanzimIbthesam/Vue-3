@@ -6,8 +6,13 @@
       <router-link :to="{ name: 'singlepost', params: { id: post.id }}">
         {{post.title}}
 </router-link>
+
     </div>
-    
+    <button @click="increaseCounter(5)"
+     
+
+:class="[oddorEven==='Odd'? 'oddbutton':'evenbutton']"
+>{{counterData.counter}}</button>
     <!-- With named routes -->
   <!-- <router-link :to="{ name: 'post', params: { id: 1 }}"> -->
   User
@@ -20,9 +25,21 @@
 
 import { ref } from 'vue';
 import ModalView from './ModalView.vue';
+import {useCounter} from '../use/useCounter.js'
 const allposts=ref([
   {id:1,title:"Post One",description:"Description One"},
   {id:2,title:"Post One",description:"Description Two"},
   {id:3,title:"Post One",description:"Description Two"},
 ]);
+ const {counterData,oddorEven,increaseCounter}=useCounter();
 </script>
+<style scoped>
+.oddbutton{
+  background:blue;
+  color:white;
+}
+.evenbutton{
+background:crimson;
+  color:white;
+}
+</style>

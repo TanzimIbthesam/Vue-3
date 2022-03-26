@@ -1,39 +1,23 @@
 <template>
   <div>
              <button @click="increaseCounter(10)">Increase Counter</button>
-             Counter-{{counter}} 
+             Counter-{{counterData.counter}} 
                <input type="text" v-model="title" v-Focus/>  
                <!-- <h2>{{appTitle}}</h2> -->
-             <h1 ref="appTitleRef">{{appTitle}}</h1>
-             
+             <!-- <h1 ref="appTitleRef">{{appTitle}}</h1> -->
+              <p>Odd or even-{{oddorEven}}</p>
     
   </div>
 </template>
 
 <script setup>
-import {  nextTick,onMounted, ref } from 'vue';
+
+ import {useCounter} from '../use/useCounter.js'
  import vFocus from '../directives/vFocus.js';
-  const title=ref(null);
-  const counter=ref(0);
-const appTitle='My app title';
-
-
-
-const appTitleRef=ref(null);
-appTitleRef.style="color:green"
- const increaseCounter=async(amount)=>{
-  counter.value+=amount
-  await nextTick();
-  console.log("Hello this is mounted to DOM");
-  //If not async function 
-  
-}
-onMounted(()=>{
-  console.log(`The app title width is ${appTitleRef.value.offsetWidth} `);
-  console.log(appTitleRef.value);
+  // const title=ref(null);
+  // const counter=ref(0);
  
-})
-
+  const {counterData,oddorEven,increaseCounter}=useCounter();
 
 </script>
 
