@@ -1,13 +1,12 @@
 
 
 <template>
-<Router-link class="button" :to="{name:'viewnotes'}">Home</Router-link>
-<Router-link class="button" :to="{name:'viewstats'}">Stats</Router-link>
-  <RouterView />
+<Navbar />
+<Router-view />
 </template>
 
 <script setup>
-
+import Navbar from '@/components/layouts/Navbar.vue'
 
 </script>
 
