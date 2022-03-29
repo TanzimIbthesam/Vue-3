@@ -2,6 +2,9 @@
 
 <template>
 <Navbar />
+<div class="container is-max-desktop px-2 py-2">
+
+</div>
 <Router-view />
 </template>
 

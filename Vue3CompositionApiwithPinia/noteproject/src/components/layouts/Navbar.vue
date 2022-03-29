@@ -1,6 +1,7 @@
 <template>
   <nav class="navbar is-success" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+      <div class="container is-max-desktop px-2">
+ <div class="navbar-brand">
     <div class="is-size-4 is-family-monospace" >
       Noteballs App
     </div>
@@ -19,6 +20,8 @@
  </a>
     
   </div>
+      </div>
+ 
 
   <div id="navbarBasicExample" class="navbar-menu "
   :class="[showMobileNav ? 'is-active':'']"

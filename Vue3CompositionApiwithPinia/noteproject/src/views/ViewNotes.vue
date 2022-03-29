@@ -1,5 +1,35 @@
 <template>
-  <div>View Notes</div>
+<div class="card has-background-success p-4 mb-5">
+
+
+  <div class="field">
+  <div class="control">
+    <textarea class="textarea" placeholder="Add a new note"></textarea>
+  </div>
+</div>
+<div class="field is-grouped is-grouped-right">
+    <div class="control">
+        <button class="button is-link has-background-success-dark">Submit</button>
+    </div>
+
+</div>
+</div>
+  <div 
+  v-for="i in 3"
+  class=" mb-4"
+  >
+  
+  <div class="card-content">
+    <div class="content">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quibusdam culpa velit molestiae quia voluptatum eum quis aperiam qui beatae expedita, id labore optio fugiat enim, atque rem animi deleniti!
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
+</div>
 </template>
 
 <script>
