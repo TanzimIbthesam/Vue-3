@@ -1,40 +1,69 @@
 <template>
 <div class="card has-background-success p-4 mb-5">
 
-
-  <div class="field">
+    <form @submit.prevent="AddNote">
+     <div class="field">
   <div class="control">
-    <textarea class="textarea" placeholder="Add a new note"></textarea>
+    <textarea 
+    v-model="writeNote"
+    class="textarea"  
+    ref="writeNoteRef"
+    @deleteNote="deleteNote"
+    placeholder="Add a new note">
+    </textarea>
   </div>
 </div>
 <div class="field is-grouped is-grouped-right">
     <div class="control">
-        <button class="button is-link has-background-success-dark">Submit</button>
+        <button 
+        :disabled="!writeNote"
+        class="button is-link has-background-success-dark">Submit</button>
     </div>
 
 </div>
-</div>
-  <div 
-  v-for="i in 3"
-  class=" mb-4"
-  >
-  
-  <div class="card-content">
-    <div class="content">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quibusdam culpa velit molestiae quia voluptatum eum quis aperiam qui beatae expedita, id labore optio fugiat enim, atque rem animi deleniti!
-    </div>
+    </form>
   </div>
-  <footer class="card-footer">
-    <a href="#" class="card-footer-item">Save</a>
-    <a href="#" class="card-footer-item">Edit</a>
-    <a href="#" class="card-footer-item">Delete</a>
-  </footer>
-</div>
+<Note 
+v-for="note in notes"
+:key="note.id"
+:note="note"
+@deleteNote="deleteNote"
+
+/>
+
+  
 </template>
 
-<script>
-export default {
+<script setup>
+import {ref} from 'vue';
+import Note from '@/components/Notes/Note.vue';
+const writeNote=ref('');
+const writeNoteRef=ref(null);
+const notes=ref([
+    {id:1,content:" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quibusdam culpa velit molestiae quia voluptatum eum quis aperiam qui beatae expedita, id labore optio fugiat enim, atque rem animi deleniti!"},
+    {id:2,content:"Notess"},
+])
+ 
 
+
+const AddNote=()=>{
+    let currentDate = new Date().getTime(),
+        id = currentDate.toString()
+
+    let note={
+   id,
+    content: writeNote.value
+}
+  notes.value.unshift(note)
+   writeNote.value=''
+   writeNoteRef.value.focus()
+    
+   
+    
+   
+}
+const deleteNote=(id)=>{
+    notes.value=notes.value.filter(note=>note.id !== id)
 }
 </script>
 
