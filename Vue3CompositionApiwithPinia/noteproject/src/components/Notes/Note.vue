@@ -8,11 +8,15 @@
     <div class="content">
         {{note.content}}
     </div>
-    Characters-{{contentCharacterLength}}
+   Characters-{{contentCharacterLength}} 
   </div>
   <footer class="card-footer">
     <a href="#" class="card-footer-item">Save</a>
-    <a href="#" class="card-footer-item" >Edit</a>
+    <!-- <a href="#" class="card-footer-item" >Edit</a> -->
+    <!-- <router-link :to="`/editNote/${note.id}`">Edit</router-link> -->
+    <router-link :to="{ name: 'EditNote', params: { id: note.id }}">
+     Edit
+</router-link>
     <a href="#" class="card-footer-item" @click="deleteNote">Delete</a>
 
   </footer>

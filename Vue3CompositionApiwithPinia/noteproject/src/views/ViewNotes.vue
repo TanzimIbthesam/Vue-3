@@ -8,7 +8,7 @@
     v-model="writeNote"
     class="textarea"  
     ref="writeNoteRef"
-    @deleteNote="deleteNote"
+    
     placeholder="Add a new note">
     </textarea>
   </div>
@@ -24,7 +24,7 @@
     </form>
   </div>
 <Note 
-v-for="note in notes"
+v-for="note in storeNotes.notes"
 :key="note.id"
 :note="note"
 @deleteNote="deleteNote"
@@ -37,24 +37,24 @@ v-for="note in notes"
 <script setup>
 import {ref} from 'vue';
 import Note from '@/components/Notes/Note.vue';
-const writeNote=ref('');
-const writeNoteRef=ref(null);
-const notes=ref([
-    {id:1,content:" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quibusdam culpa velit molestiae quia voluptatum eum quis aperiam qui beatae expedita, id labore optio fugiat enim, atque rem animi deleniti!"},
-    {id:2,content:"Notess"},
-])
+import {useStoreNotes} from '@/stores/storeNotes.js';
+import {useNote} from '@/composables/useNote.js'
+const storeNotes=useStoreNotes();
+
+
+  const writeNote=ref('');
+  const writeNoteRef=ref(null);
+// const notes=ref([
+//     {id:1,content:" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quibusdam culpa velit molestiae quia voluptatum eum quis aperiam qui beatae expedita, id labore optio fugiat enim, atque rem animi deleniti!"},
+//     {id:2,content:"Notess"},
+// ])
  
 
 
 const AddNote=()=>{
-    let currentDate = new Date().getTime(),
-        id = currentDate.toString()
-
-    let note={
-   id,
-    content: writeNote.value
-}
-  notes.value.unshift(note)
+    storeNotes.AddNote(writeNote.value)
+   
+//   store.notes.unshift(note)
    writeNote.value=''
    writeNoteRef.value.focus()
     
@@ -62,9 +62,12 @@ const AddNote=()=>{
     
    
 }
-const deleteNote=(id)=>{
-    notes.value=notes.value.filter(note=>note.id !== id)
+ const deleteNote=(id)=>{
+    storeNotes.deleteNote(id)
+    //  storeNotes.notes=storeNotes.notes.filter(note=>note.id !== id)
 }
+
+
 </script>
 
 <style>
