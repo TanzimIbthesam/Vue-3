@@ -16,7 +16,8 @@ const routes=[
     {
       path: '/editNote/:id',
       name: 'EditNote',
-      component:EditNote
+      component:EditNote,
+      props: true
     },
     
    

@@ -1,5 +1,20 @@
 <template>
-<div class="card has-background-success p-4 mb-5">
+Hello
+<AddEditNote
+ v-model="writeNote"
+ ref="writeNoteRef"
+>
+   
+    <template #buttons>
+        
+        <button 
+         @click="AddNote"
+         :disabled="!writeNote"
+        class="button is-link has-background-success-dark">Add New Note</button> 
+    </template>
+</AddEditNote>
+writeNote-{{writeNote}}
+<!-- <div class="card has-background-success p-4 mb-5">
 
     <form @submit.prevent="AddNote">
      <div class="field">
@@ -22,7 +37,7 @@
 
 </div>
     </form>
-  </div>
+  </div> -->
 <Note 
 v-for="note in storeNotes.notes"
 :key="note.id"
@@ -36,14 +51,18 @@ v-for="note in storeNotes.notes"
 
 <script setup>
 import {ref} from 'vue';
+import AddEditNote from '@/components/Notes/AddEditNote.vue'
 import Note from '@/components/Notes/Note.vue';
 import {useStoreNotes} from '@/stores/storeNotes.js';
-import {useNote} from '@/composables/useNote.js'
+// import {useNote} from '@/composables/useNote.js'
+
 const storeNotes=useStoreNotes();
 
 
   const writeNote=ref('');
   const writeNoteRef=ref(null);
+  const username=ref();
+//   const writeNoteRef=ref(null);
 // const notes=ref([
 //     {id:1,content:" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quibusdam culpa velit molestiae quia voluptatum eum quis aperiam qui beatae expedita, id labore optio fugiat enim, atque rem animi deleniti!"},
 //     {id:2,content:"Notess"},
@@ -56,7 +75,10 @@ const AddNote=()=>{
    
 //   store.notes.unshift(note)
    writeNote.value=''
-   writeNoteRef.value.focus()
+   writeNoteRef.value.focusTextarea()
+
+   
+    
     
    
     

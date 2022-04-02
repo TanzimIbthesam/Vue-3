@@ -24,7 +24,7 @@
 </div>
 </template>
 
-<script setup>
+<script setup> 
 import DeleteModal from'./Modal/DeleteModal.vue';
 //  import {useNote} from '../../composables/useNote.js';
 
