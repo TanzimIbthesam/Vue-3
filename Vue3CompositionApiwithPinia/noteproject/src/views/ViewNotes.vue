@@ -1,6 +1,7 @@
 <template>
 Hello
 <AddEditNote
+
  v-model="writeNote"
  ref="writeNoteRef"
 >
@@ -13,7 +14,7 @@ Hello
         class="button is-link has-background-success-dark">Add New Note</button> 
     </template>
 </AddEditNote>
-writeNote-{{writeNote}}
+Username-{{writeNote}}
 <!-- <div class="card has-background-success p-4 mb-5">
 
     <form @submit.prevent="AddNote">
