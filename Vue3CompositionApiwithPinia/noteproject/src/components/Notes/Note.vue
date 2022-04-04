@@ -17,18 +17,22 @@
     <router-link :to="{ name: 'EditNote', params: { id: note.id }}">
      Edit
 </router-link>
-    <a href="#" class="card-footer-item" @click="deleteNote">Delete</a>
-
+    <!-- <a href="#" class="card-footer-item" @click="deleteNote">Delete</a> -->
+      <a href="#" class="card-footer-item" @click="modals.deleteNote=true">Delete</a>
   </footer>
-  <DeleteModal :note="note" v-if="showDeleteModal" />
+  <DeleteModal 
+  v-if="modals.deleteNote" 
+  v-model="modals.deleteNote"
+  :noteId="note.id"
+  />
 </div>
 </template>
 
 <script setup> 
-import DeleteModal from'./Modal/DeleteModal.vue';
+import DeleteModal from '@/components/Notes/Modal/DeleteModal.vue'
 //  import {useNote} from '../../composables/useNote.js';
 
-import {computed,ref} from 'vue';
+import {computed,reactive,ref} from 'vue';
 const emit=defineEmits('deleteNote')
 
 const showDeleteModal=ref(false);
@@ -50,10 +54,14 @@ const contentCharacterLength=computed(()=>{
     return `${length}-${character}`;
 })
 
-const deleteNote=()=>{
-     emit('deleteNote',props.note.id )
-}
 
+const modals=reactive({
+    deleteNote:false
+})
+
+const deleteModal=()=>{
+    console.log("Clicked");
+}
 
 
 </script>

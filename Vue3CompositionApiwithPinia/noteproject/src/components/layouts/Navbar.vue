@@ -13,6 +13,7 @@
   data-target="navbarBasicExample"
   role="button"
   :class="[showMobileNav ? 'is-active':'']"
+  ref="navBarMenuRef"
  >
  <span aria-hidden="true"></span>
   <span aria-hidden="true"></span>
@@ -42,11 +43,15 @@
 
 <script setup>
 import {ref} from 'vue';
+import { onClickOutside } from '@vueuse/core'
 const showMobileNav=ref(false);
-
+const navBarMenuRef=ref(false);
 const showHideMobileNav=()=>{
     showMobileNav.value =! showMobileNav.value
 }
+onClickOutside(navBarMenuRef,()=>{
+  showMobileNav.value=false
+})
 </script>
 
 <style>
