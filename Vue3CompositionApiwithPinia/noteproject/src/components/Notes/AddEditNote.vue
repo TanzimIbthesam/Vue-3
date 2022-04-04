@@ -10,7 +10,9 @@
               @input="$emit('update:modelValue',modelValue)"
               class="textarea"
               :placeholder="placeholder"
-              ref="textareaRef">
+              ref="textareaRef"
+              v-autofocus
+              >
 
               </textarea>
           
@@ -28,6 +30,7 @@
 
 <script setup>
 import {ref} from 'vue'
+import vAutofocus from '@/directives/vAutofocus.js'
 const props=defineProps({
    
     modelValue:{
@@ -53,7 +56,12 @@ const props=defineProps({
 const emit=defineEmits(['update:modelValue'])
 const textareaRef = ref(null)
 // const editNoteRef=ref(null);
-
+//autofocus
+// const vAutofocus={
+//     mounted:(el)=>{
+//         el.focus()
+//     }
+// }
 const focusTextarea=()=>{
     // editNoteRef.value.focus()
       textareaRef.value.focus()

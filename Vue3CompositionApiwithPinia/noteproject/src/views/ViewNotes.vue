@@ -16,7 +16,6 @@ Hello
 </AddEditNote>
 Username-{{writeNote}}
 <!-- <div class="card has-background-success p-4 mb-5">
-
     <form @submit.prevent="AddNote">
      <div class="field">
   <div class="control">
@@ -35,7 +34,6 @@ Username-{{writeNote}}
         :disabled="!writeNote"
         class="button is-link has-background-success-dark">Submit</button>
     </div>
-
 </div>
     </form>
   </div> -->
@@ -51,15 +49,13 @@ v-for="note in storeNotes.notes"
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {ref,watch} from 'vue';
 import AddEditNote from '@/components/Notes/AddEditNote.vue'
 import Note from '@/components/Notes/Note.vue';
 import {useStoreNotes} from '@/stores/storeNotes.js';
+import {useWatch} from '@/composables/useWatch.js'
 // import {useNote} from '@/composables/useNote.js'
-
 const storeNotes=useStoreNotes();
-
-
   const writeNote=ref('');
   const writeNoteRef=ref(null);
   const username=ref();
@@ -69,15 +65,12 @@ const storeNotes=useStoreNotes();
 //     {id:2,content:"Notess"},
 // ])
  
-
-
 const AddNote=()=>{
     storeNotes.AddNote(writeNote.value)
    
 //   store.notes.unshift(note)
    writeNote.value=''
    writeNoteRef.value.focusTextarea()
-
    
     
     
@@ -85,14 +78,18 @@ const AddNote=()=>{
     
    
 }
+
+// watch(writeNote,(newValue)=>{
+// if(newValue.length>20) alert("You have exceded 20characters")
+// })
+
+useWatch(writeNote)
  const deleteNote=(id)=>{
     storeNotes.deleteNote(id)
     //  storeNotes.notes=storeNotes.notes.filter(note=>note.id !== id)
 }
-
-
 </script>
 
 <style>
-
 </style>
+
