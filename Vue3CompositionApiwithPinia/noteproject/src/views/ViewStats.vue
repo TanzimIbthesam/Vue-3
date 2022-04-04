@@ -1,13 +1,30 @@
 <template>
-  <div>
-      Vue stats
+  <div class="stats">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Stat</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Number of Notes</td>
+          <td>{{store.getNotesLength}}</td>
+        </tr>
+        <tr>
+          <td>Number of Characters (of all notes)</td>
+          <td>{{store.totalCharactersCount}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
-
-<script>
-export default {
-
-}
+   
+<script setup>
+import { useStoreNotes } from "@/stores/storeNotes";
+const store=useStoreNotes();
 </script>
 
 <style>
