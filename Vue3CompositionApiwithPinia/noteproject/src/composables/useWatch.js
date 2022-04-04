@@ -1,6 +1,6 @@
 import {watch} from 'vue';
-export const useWatch=(valueToWatch=>{
+export const useWatch=((valueToWatch,maxChars)=>{
     watch(valueToWatch,(newValue)=>{
-        if(newValue.length>20) alert("You have exceded 20characters")
+        if(newValue.length>maxChars) alert("You have exceded 20characters")
         })
 });

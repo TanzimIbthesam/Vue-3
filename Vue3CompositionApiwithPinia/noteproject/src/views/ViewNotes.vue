@@ -83,7 +83,7 @@ const AddNote=()=>{
 // if(newValue.length>20) alert("You have exceded 20characters")
 // })
 
-useWatch(writeNote)
+useWatch(writeNote,3)
  const deleteNote=(id)=>{
     storeNotes.deleteNote(id)
     //  storeNotes.notes=storeNotes.notes.filter(note=>note.id !== id)
