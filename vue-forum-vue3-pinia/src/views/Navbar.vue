@@ -2,7 +2,10 @@
 
   <div class="bg-blue-400  w-full">
         <div class="mx-auto max-w-5xl flex justify-between p-4">
-            <div class="flex">  <p class="text-gray-100 font-medium text-xl cursor-pointer">Vue Forum</p>
+            <div class="flex">  
+                <p class="text-gray-100 font-medium text-xl cursor-pointer"> <router-link :to="{ name: 'posts'}">
+                Vue Forum
+                </router-link></p>
               <span class="text-white font-semibold text-xl pl-2 cursor-pointer">
                    <router-link :to="{ name: 'addpost'}">
                   Add a Post
