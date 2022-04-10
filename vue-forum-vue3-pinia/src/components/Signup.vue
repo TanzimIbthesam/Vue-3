@@ -7,10 +7,10 @@
                 <h1 class="text-xl font-serif font-medium">Sign up</h1>
                 <form @submit.prevent="handleSubmit">
                   <label for="">Enter your email</label><br>
-                <input type="text" v-model="email" class="border-b-2 border-gray-300 w-4/5  py-1" name="" id=""><br>
+                <input type="text" v-model="store.email" class="border-b-2 border-gray-300 w-4/5  py-1" name="" id=""><br>
                 <label for=""> <p class="pt-2">Enter your password</p></label>
                
-                <input type="password" v-model="password" class="border-b-2 border-gray-300  w-4/5 py-1" name="" id=""><br>
+                <input type="password" v-model="store.password" class="border-b-2 border-gray-300  w-4/5 py-1" name="" id=""><br>
                 <button class="px-6 py-1 bg-purple-600 text-white font-serif rounded-md ">SignUp</button><br>
                 </form>
                  
@@ -30,9 +30,13 @@
 
 <script setup>
 import { ref } from 'vue';
-import  {auth}  from '../firebase/config.js'
+import  {auth}  from '@/firebase/config.js'
 import {useRouter} from 'vue-router';
 import {createUserWithEmailAndPassword} from 'firebase/auth'
+
+import {authUserStore} from '@/store/index.js'
+
+const store=authUserStore();
 const email=ref('');
 const password=ref('');
 const router=useRouter();
@@ -48,17 +52,18 @@ const toggleSignup=()=>{
     emit('toggleSignup')
 }
 
-const handleSubmit=async()=>{
-    try {
-       const user=await createUserWithEmailAndPassword(auth, email.value, password.value)
-       if(user){
-           router.replace({name:'posts'})
-       }
-    } catch (error) {
-        console.log(error);
-    }
-  
-  
+const handleSubmit=()=>{
+    // try {
+    //    const user=await createUserWithEmailAndPassword(auth, email.value, password.value)
+    //    if(user){
+    //        router.replace({name:'posts'})
+    //    }
+    // } catch (error) {
+    //     console.log(error);
+    // }
+//   authStore.handleSubmit();
+//   store.handleSubmit()
+  store.handleSubmit();
  
 }
 </script>
