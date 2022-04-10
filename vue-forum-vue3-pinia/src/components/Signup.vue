@@ -30,15 +30,15 @@
 
 <script setup>
 import { ref } from 'vue';
-import  {auth}  from '@/firebase/config.js'
+
 import {useRouter} from 'vue-router';
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+
 
 import {authUserStore} from '@/store/index.js'
 
 const store=authUserStore();
-const email=ref('');
-const password=ref('');
+const email=store.email;
+const password=store.password;
 const router=useRouter();
 const props=defineProps({
     loginmessage:{
