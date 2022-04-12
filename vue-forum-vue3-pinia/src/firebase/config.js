@@ -21,11 +21,10 @@ const firebaseConfig = {
   // Initialize Firebase
   
 // init firebase
-initializeApp(firebaseConfig)
+// initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
-
-
-const auth = getAuth()
+const auth = getAuth(app)
 
 export { auth }
 

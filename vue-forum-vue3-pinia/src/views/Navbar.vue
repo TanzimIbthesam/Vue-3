@@ -6,7 +6,7 @@
                 <p class="text-gray-100 font-medium text-xl cursor-pointer"> <router-link :to="{ name: 'posts'}">
                 Vue Forum
                 </router-link></p>
-              <span class="text-white font-semibold text-xl pl-2 cursor-pointer">
+              <span v-if="isLoggedIn" class="text-white font-semibold text-xl pl-2 cursor-pointer">
                    <router-link :to="{ name: 'addpost'}">
                   Add a Post
                 </router-link>
@@ -17,14 +17,15 @@
                 </div>
                 
             <div class="flex justify-between ">
-                    <div>
+              
+                    <div v-if="store.isLoggedIn">
                         
                         <span class="material-icons text-white cursor-pointer -ml-8 notifications" @click=" openNotification">settings_power
 </span>
 
 <div class="relative inline-block text-left">
   <div>
-             <span class="material-icons icon cursor-pointer text-white " @click="openProfile">
+             <span  class="material-icons icon cursor-pointer text-white " @click="openProfile">
 account_circle
 </span>
   </div>
@@ -57,8 +58,10 @@ account_circle
     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
       <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Account settings</a>
     
-      <form method="POST" action="#">
-        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
+      <form >
+        <button 
+         
+        @click.prevent="handleLogout" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
           Sign Out <i class="fas fa-outdent    "></i>
         </button>
       </form>
@@ -67,7 +70,11 @@ account_circle
 </div>
 
 </div>
-                  
+           <div v-else>
+                <router-link :to="{ name: 'login'}">
+                 <div class="font-serif text-white">Login</div>
+               </router-link>
+              </div>       
             </div>
             
 
@@ -80,10 +87,13 @@ account_circle
 
  <script setup>
  import {ref} from 'vue'
-
+import {authUserStore} from '@/store/index.js'
+import { onMounted } from 'vue'
  const isProfileOpen=ref(false);
  const isNotificationOpen=ref(false)
-
+const store=authUserStore();
+import  { auth } from '@/firebase/config.js'
+import { getAuth } from 'firebase/auth'
  const openProfile=()=>{
      console.log("Clicked");
     //  console.log(isProfileOpen);
@@ -94,6 +104,15 @@ const openNotification=()=>{
      console.log("Clicked");
     isNotificationOpen.value =! isNotificationOpen.value
 }
+const handleLogout=()=>{
+ store.logout()
+}
+
+onMounted(()=>{
+  store.fetchUser()
+// const auth=getAuth();
+// console.log(auth.currentUser);
+})
 </script>
 
 

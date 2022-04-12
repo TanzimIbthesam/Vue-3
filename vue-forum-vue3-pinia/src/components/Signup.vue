@@ -37,8 +37,7 @@ import {useRouter} from 'vue-router';
 import {authUserStore} from '@/store/index.js'
 
 const store=authUserStore();
-const email=store.email;
-const password=store.password;
+
 const router=useRouter();
 const props=defineProps({
     loginmessage:{
@@ -52,18 +51,21 @@ const toggleSignup=()=>{
     emit('toggleSignup')
 }
 
-const handleSubmit=()=>{
-    // try {
-    //    const user=await createUserWithEmailAndPassword(auth, email.value, password.value)
-    //    if(user){
-    //        router.replace({name:'posts'})
-    //    }
-    // } catch (error) {
-    //     console.log(error);
-    // }
-//   authStore.handleSubmit();
-//   store.handleSubmit()
-  store.handleSubmit();
+const handleSubmit=async()=>{
+    
+//   store.signup();
+try {
+                //  const auth=auth();
+                 
+                const user=await createUserWithEmailAndPassword(auth,this.email,this.password);
+                if(user){
+                    router.push('/')
+                    
+                }
+                
+             } catch (error) {
+                 console.log(error);
+             }
  
 }
 </script>
