@@ -1,12 +1,12 @@
 <template>
-
-  <div class="bg-blue-400  w-full">
+<div>
+<div class="bg-blue-400  w-full">
         <div class="mx-auto max-w-5xl flex justify-between p-4">
             <div class="flex">  
                 <p class="text-gray-100 font-medium text-xl cursor-pointer"> <router-link :to="{ name: 'posts'}">
-                Vue Forum
+                
                 </router-link></p>
-              <span v-if="isLoggedIn" class="text-white font-semibold text-xl pl-2 cursor-pointer">
+              <span v-if="store.isLoggedIn" class="text-white font-semibold text-xl pl-2 cursor-pointer">
                    <router-link :to="{ name: 'addpost'}">
                   Add a Post
                 </router-link>
@@ -81,19 +81,24 @@ account_circle
         </div>
        
     </div>
+</div>
+  
 </template>
 
 
 
  <script setup>
+
  import {ref} from 'vue'
 import {authUserStore} from '@/store/index.js'
+ import  { auth } from '@/firebase/config.js'
+import { onAuthStateChanged } from 'firebase/auth'
 import { onMounted } from 'vue'
  const isProfileOpen=ref(false);
  const isNotificationOpen=ref(false)
 const store=authUserStore();
-import  { auth } from '@/firebase/config.js'
-import { getAuth } from 'firebase/auth'
+const authuser=ref('');
+const email=ref('');
  const openProfile=()=>{
      console.log("Clicked");
     //  console.log(isProfileOpen);
@@ -107,11 +112,9 @@ const openNotification=()=>{
 const handleLogout=()=>{
  store.logout()
 }
-
 onMounted(()=>{
+  
   store.fetchUser()
-// const auth=getAuth();
-// console.log(auth.currentUser);
 })
 </script>
 

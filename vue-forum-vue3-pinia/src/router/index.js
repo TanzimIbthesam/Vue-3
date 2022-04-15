@@ -5,7 +5,26 @@ import AddPost from '@/components/AddPost.vue'
 import Posts from '@/views/Posts.vue'
   import  { auth } from '@/firebase/config.js'
 import { getAuth,onAuthStateChanged } from 'firebase/auth';
+const requireAuth = (to, from, next) => {
+  let user = auth.currentUser;
+  console.log('current user in auth guard: ', user)
 
+  if (!user) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+}
+const redirectToHomePage = (to, from, next) => {
+  let user = auth.currentUser
+  
+  if (to.name == 'login' && user) {
+    next({ name: 'posts' })
+    
+  }
+  else  next()
+  
+}
 
 const routes=[
     {
@@ -16,7 +35,9 @@ const routes=[
       {
           path: '/login',
           name: 'login',
-          component:LandingPage,
+           component:LandingPage,
+            beforeEnter: redirectToHomePage
+          
          
           
           
@@ -25,9 +46,8 @@ const routes=[
           path: '/addpost',
           name: 'addpost',
           component:AddPost,
-          meta: {
-            requiresAuth: true
-          }
+          
+          beforeEnter:requireAuth
           
          
           
@@ -40,31 +60,19 @@ const routes=[
     routes
   });
   
- 
- 
+  // router.beforeEach((to, from, next) => {
+  //   if (to.path === '/login' && auth.currentUser) {
+  //     next('/')
+  //     return;
+  //   }
   
-  const getCurrentUser = () => {
-    return new Promise(( resolve, reject ) =>{
-      const removeListener = onAuthStateChanged(
-        auth,
-        (user) => {
-          removeListener();
-          resolve(user)
-        },
-        reject
-      )
-    })
-  }
-  router.beforeEach( async (to, from, next) => {
-    if (to.matched.some((record) => record.meta.requiresAuth)){
-      if (await getCurrentUser()){
-        next();
-      } else {
-        
-        next('/login');
-      }
-    } else {
-      next();
-    }
-  });
+  //   if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
+  //     next('/login')
+  //     return;
+  //   }
+  
+  //   next();
+  // });
+  
+
 export default router;

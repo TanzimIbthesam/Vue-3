@@ -1,3 +1,4 @@
+import router from '@/router/index.js'
 import { defineStore } from "pinia";
 import  { auth } from '@/firebase/config.js'
 //You can also write 
@@ -11,7 +12,7 @@ onAuthStateChanged
 
 } from 'firebase/auth'
 
-import router from '@/router/index.js'
+
 export  const authUserStore=defineStore({
     id:'authusestore',
     state:()=>{
@@ -19,7 +20,8 @@ export  const authUserStore=defineStore({
             email:'',
             password:'',
             isLoggedIn:false,
-            user:null
+            user:auth.currentUser
+            
         }
     },
     actions:{
@@ -31,7 +33,7 @@ export  const authUserStore=defineStore({
                 const user=await createUserWithEmailAndPassword(auth,this.email,this.password);
                 
                 if(user){
-                    router.push('/')
+                    router.replace({name:'posts'})
                     
                 }
                
@@ -44,7 +46,7 @@ export  const authUserStore=defineStore({
             try {
                 const res=await signInWithEmailAndPassword(auth,this.email,this.password)
                 if(res){
-                    router.push('/')
+                    router.replace({name:'posts'})
                     
                 }
             } catch (error) {
@@ -54,16 +56,18 @@ export  const authUserStore=defineStore({
         async logout(){
             
                 await signOut(auth)
-                router.push('/login')
+                router.replace({name:'login'})
                 this.email=''
                 this.password=''
            
         },
          fetchUser(){
             onAuthStateChanged(auth, (user) => {
-                
-                  if(user){
-                      this.user=user
+                 
+                  if(user != null){
+                    this.user=user
+                    console.log(this.user);
+                    console.log(auth.currentUser);
                       this.isLoggedIn=true
                     //   console.log(this.user.currentUser);
                       if (router.isReady() && router.currentRoute.value.path === '/login') {

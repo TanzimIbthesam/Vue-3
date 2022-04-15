@@ -53,19 +53,8 @@ const toggleSignup=()=>{
 
 const handleSubmit=async()=>{
     
-//   store.signup();
-try {
-                //  const auth=auth();
-                 
-                const user=await createUserWithEmailAndPassword(auth,this.email,this.password);
-                if(user){
-                    router.push('/')
-                    
-                }
-                
-             } catch (error) {
-                 console.log(error);
-             }
+   store.signup();
+
  
 }
 </script>

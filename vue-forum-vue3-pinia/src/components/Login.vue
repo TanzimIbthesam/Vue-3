@@ -8,10 +8,10 @@
                     
                 
                  <label for="">Enter your email</label><br>
-                <input type="text" v-model="store.email"  class="border-b-2 border-gray-300 w-4/5  py-1" name="" id=""><br>
+                <input type="text" v-model="store.email"  class="border-b-2 border-gray-300 w-4/5  py-1" name=""><br>
                 <label for=""> <p class="pt-2">Enter your password</p></label>
                
-                <input type="password" v-model="store.password" class="border-b-2 border-gray-300  w-4/5 py-1" name="" id=""><br>
+                <input type="password" v-model="store.password" class="border-b-2 border-gray-300  w-4/5 py-1" name="" ><br>
                 <button class="px-6 py-1 bg-purple-600 text-white font-serif rounded-md ">Login</button><br>
                 </form>
                 <div class="mt-2">
