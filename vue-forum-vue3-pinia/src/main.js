@@ -5,6 +5,7 @@ import router from './router/index'
 import { createPinia } from 'pinia'
  import { onAuthStateChanged } from 'firebase/auth'
  import {auth} from '@/firebase/config.js'
+ import {ref} from 'vue'
  const app=createApp(App);
 
 app.use(createPinia())
