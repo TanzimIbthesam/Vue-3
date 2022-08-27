@@ -114,10 +114,12 @@ methods:{
       })
     },
   clickCheckbox(id){
-    console.log("clicked",id);
-     this.form.isSelected =! this.form.isSelected
+    let p=this.allemployees.find((allemployee)=>{
+       return  allemployee.id === id
+       })
+       p.isSelected = !p.isSelected
     
-     axios.patch('http://localhost:3001/employees/'+id,{isSelected :this.form.isSelected })
+     axios.patch('http://localhost:3001/employees/'+id,{isSelected :!this.form.isSelected })
     
   }
 },
