@@ -1,0 +1,16 @@
+{
+  "employees": [
+    {
+      "name": "Newaz",
+      "location": "Chuwadanga",
+      "isSelected": true,
+      "id": 1
+    },
+    {
+      "name": "Laize",
+      "location": "Dhaka",
+      "isSelected": false,
+      "id": 3
+    }
+  ]
+}
