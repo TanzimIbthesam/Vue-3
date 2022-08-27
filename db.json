@@ -1,16 +1,16 @@
 {
   "employees": [
     {
-      "name": "Newaz",
-      "location": "Chuwadanga",
+      "name": "Laize Hasan Chy",
+      "location": "Dhaka",
       "isSelected": true,
-      "id": 1
+      "id": 3
     },
     {
-      "name": "Laize",
-      "location": "Dhaka",
+      "name": "Newaz",
+      "location": "Chuwadanga",
       "isSelected": false,
-      "id": 3
+      "id": 4
     }
   ]
 }
