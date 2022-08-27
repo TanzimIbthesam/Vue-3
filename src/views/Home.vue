@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-2">
          Employee List
-         <input type="search" class="form-control mt-3 mb-2" name="" id="">
+         <input type="search" v-model="search" class="form-control mt-3 mb-2" name="" id="">
          <div class="card" style="width:10rem;">
   <!-- {{allemployees}} -->
  
-  <div v-for="allemployee in allemployees" :key="allemployee.id">
+  <div v-for="allemployee in searchallEmployees" :key="allemployee.id">
     <div class="card-body">
     <div class="d-flex flex-row mb-3">
          <div><h5 class="card-title">{{allemployee.name}}</h5></div>
@@ -92,6 +92,7 @@ export default({
 data(){
     return{
         allemployees:[],
+        search:"",
         form:{
             name:"",
             location:"",
@@ -134,6 +135,11 @@ computed:{
 
    selectedEmployees(){
         return this.allemployees.filter((allemployee=>allemployee.isSelected))
+   },
+   searchallEmployees(){
+    return this.allemployees.filter((allemployee)=>
+    allemployee.name.includes(this.search) || 
+    (allemployee.location.includes(this.search)))
    }
 }
 
