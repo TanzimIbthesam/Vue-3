@@ -3,17 +3,17 @@
     {
       "name": "Newaz",
       "location": "Chuwadanga",
-      "isSelected": false,
+      "isSelected": true,
       "id": 1
     },
     {
-      "name": "Shahadu",
-      "location": "Mymensingh",
+      "name": "Kamal Ahmed",
+      "location": "Dhaka",
       "isSelected": false,
       "id": 2
     },
     {
-      "name": "Laize",
+      "name": "Shahadu",
       "location": "Mymensingh",
       "isSelected": false,
       "id": 3

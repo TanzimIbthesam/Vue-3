@@ -102,9 +102,8 @@ data(){
 },
 methods:{
   handleSubmit(){
-     axios.post('http://localhost:3001/employees',this.form).then(response=>{
-        this.allemployees
-     })
+     axios.post('http://localhost:3001/employees',this.form)
+     this.searchallEmployees.unshift(this.form)
      this.form=''
     },
     handleDelete(id){

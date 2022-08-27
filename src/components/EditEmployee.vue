@@ -52,7 +52,7 @@ methods:{
 
 },
 mounted(){
-    axios.get('http://localhost:3001/employees/'+this.id)
+    axios.get('http://localhost:3001/employees/'+this.id) 
     .then(response=>{
         this.name=response.data.name
         this.location=response.data.location
