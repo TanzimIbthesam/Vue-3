@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-2">
          Employee List
-         <input type="search" v-model="search" class="form-control mt-3 mb-2" name="" id="">
+         <input type="search" v-model="search"  placeholder="Search here"
+         class="form-control mt-3 mb-2" name="" id="">
          <div class="card" style="width:10rem;">
   <!-- {{allemployees}} -->
  
@@ -17,6 +18,7 @@
     <p class="card-text">{{allemployee.location}}</p>
     
   </div>
+  <SingleEmployee :allemployee="allemployee" />
   </div>
   
  
@@ -88,6 +90,7 @@
 </template>
 <script>
 import axios from 'axios'
+import SingleEmployee from '../components/SingleEmployee.vue'
 export default({
 data(){
     return{
