@@ -5,22 +5,14 @@
         
         <h4>Employees List</h4>
         <input type="search" class="form-control"  name="" id="">
-           <div class="card">
-            <div class="card-title">
-              <div class="d-flex ">
-                <div>Md Rahman</div> <input type="checkbox" name="" id="">
-              </div>
-              <p>Dhaka Bangladesh</p>
-            </div>
-           </div>
-           <div class="card">
-            <div class="card-title">
-              <div class="d-flex ">
-                <div>Abu Jafar</div> <input type="checkbox" name="" id="">
-              </div>
-              <p>Dhaka Bangladesh</p>
-            </div>
-           </div>
+           <AllEmployee 
+            :ALL_EMPLOYEES_LIST="allemployees"
+            @selectedChange="change"
+            
+           />
+        
+           
+           
       </div>
       <div class="col-10">
         <h4>Add New Employee</h4>
@@ -38,6 +30,9 @@
       </div>
       <button type="button" class="btn btn-primary">Save</button>
         </form>
+
+
+
         <table class="table">
   <thead>
     <tr>
@@ -49,13 +44,11 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mr Rahman</td>
-      <td>Dhaka</td>
-      <td><div class="d-flex">
-        <button class="btn btn-primary">Edit</button>
-        <button class="btn btn-danger">Delete</button>
-      </div></td>
+      <div v-for="selected in selectedEmployees" :key="selected.id">
+      
+      <FilteredEmployee :selected="selected" />
+      </div>
+     
     </tr>
     <tr>
       <td>2</td>
@@ -77,13 +70,32 @@
 </template>
 
 <script>
+import AllEmployee from "@/components/AllEmployee.vue";
+import FilteredEmployee from "../components/FilteredEmployee.vue";
 export default({
+  components: {
+    AllEmployee,
+    FilteredEmployee
+  },
   data(){
     return {
       allemployees:[
-        {id:1,name:"Abu Jafar",location:"Noakhali"},
-        {id:2,name:"Md Rahman",location:"Dhaka"},
-      ]
+                    {id:1,name:"Abu Jafar",location:"Noakhali", selected: false},
+                    {id:2,name:"Md Rahman",location:"Dhaka", selected: true}
+                  ]
+    }
+  },methods:{
+    change(){
+      console.log("Clicked");
+      this.allemployees.selected =! this.allemployees.selected
+    }
+    
+  },
+  computed:{
+    selectedEmployees(){
+      this.allemployees.filter(allemployee=>{
+        allemployee.selected
+      })
     }
   }
 })
