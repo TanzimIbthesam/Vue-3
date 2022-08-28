@@ -45,20 +45,13 @@
   <tbody>
     <tr>
       <div v-for="selected in selectedEmployees" :key="selected.id">
-      
+        
       <FilteredEmployee :selected="selected" />
+      
       </div>
      
     </tr>
-    <tr>
-      <td>2</td>
-      <td>Mr Abu Jafar</td>
-      <td>Noakhali</td>
-      <td><div class="d-flex">
-        <button class="btn btn-primary">Edit</button>
-        <button class="btn btn-danger">Delete</button>
-      </div></td>
-    </tr>
+   
     
     
   </tbody>
@@ -72,6 +65,7 @@
 <script>
 import AllEmployee from "@/components/AllEmployee.vue";
 import FilteredEmployee from "../components/FilteredEmployee.vue";
+
 export default({
   components: {
     AllEmployee,
@@ -93,10 +87,8 @@ export default({
   },
   computed:{
     selectedEmployees(){
-      this.allemployees.filter(allemployee=>{
-        allemployee.selected
-      })
-    }
+        return this.allemployees.filter(allemployee=>allemployee.selected)
+   },
   }
 })
 </script>
