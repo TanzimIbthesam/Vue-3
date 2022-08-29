@@ -16,23 +16,33 @@
       </div>
       <div class="col-10">
         <h4>Add New Employee</h4>
-        <form action="">
+        <!-- <form  @submit.prevent="handleSubmit">
           <div class="d-flex justify-content-between p-2 ">
           
           <label for="">Enter Name</label><br>
-        <input type="text" class="form-control" name="" id="">
+        <input type="text" v-model="form.name" class="form-control" name="" id="">
         <label for="">Enter Address</label>
-        <input type="text" class="form-control" name="" id="">
-        
+        <input type="text" v-model="form.location" class="form-control" name="" id="">
+        Name-{{form.name}}-Location-{{form.location}}
         
         
         
       </div>
-      <button type="button" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+        </form> -->
+        <form  @submit.prevent="handleSubmit">
+         
+        <!-- Also we can write -->
+          <AddEmployee 
+          v-model:name="form.name"
+           v-model:location="form.location"
+          />
+          
+          <button 
+           @click.prevent="handleSubmit"
+      type="submit" class="btn btn-primary">Save</button>
         </form>
-
-
-
+          Name-{{form.name}}-Location-{{form.location}}
         <table class="table">
   <thead>
     <tr>
@@ -65,23 +75,40 @@
 <script>
 import AllEmployee from "@/components/AllEmployee.vue";
 import FilteredEmployee from "../components/FilteredEmployee.vue";
+import AddEmployee from "@/components/AddEmployee.vue";
 
 export default({
   components: {
     AllEmployee,
-    FilteredEmployee
+    FilteredEmployee,
+    AddEmployee
   },
   data(){
     return {
       allemployees:[
-                    {id:1,name:"Abu Jafar",location:"Noakhali", selected: false},
-                    {id:2,name:"Md Rahman",location:"Dhaka", selected: true}
-                  ]
+        {id:1,name:"Abu Jafar",location:"Noakhali", selected: false},
+        {id:2,name:"Md Rahman",location:"Dhaka", selected: true}
+                  ],
+                  name:"",
+                  location:"",
+        form:{
+          name:"",
+          location:""
+        }
     }
-  },methods:{
+  },
+  methods:{
     change(){
       console.log("Clicked");
       this.allemployees.selected =! this.allemployees.selected
+    },
+    handleSubmit(){
+        this.allemployees.push({
+          name:this.form.name,
+          location:this.form.location
+        })
+        
+         
     }
     
   },
