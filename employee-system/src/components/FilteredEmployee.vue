@@ -2,7 +2,7 @@
     <div>
         <td scope="row">{{selected.id}}</td>
       <td>{{selected.name}}</td>
-      <td>{{selected.location}}</td>
+      <td>{{selected.address}}</td>
       <td><div class="d-flex">
         <button class="btn btn-primary">Edit</button>
         <button class="btn btn-danger">Delete</button>

@@ -1,13 +1,19 @@
 <template>
-    <div class="card" v-for="(employee, index) in ALL_EMPLOYEES_LIST" :key="index">
-    <div class="card-title">
-        <div class="d-flex ">
-        <div>{{employee.name}}</div> 
-        <input type="checkbox" @click="selectedChange">
+<div class="col-3 bg-secondary">
+    <h4>Employees List</h4>
+    <input type="text" class="form-control my-4" placeholder="Search"  name="" id="">
+    
+    <div v-for="(employee, index) in ALL_EMPLOYEES_LIST" :key="index">
+        <div class="text-white">
+            <div class="d-flex justify-content-between">
+                <div>{{employee.name}}</div> 
+                <input type="checkbox" @click="selectedChange">
+            </div>
+            <p class="text-left">{{employee.address}}</p>
         </div>
-        <p>{{employee.location}}</p>
     </div>
-    </div>
+</div>
+
 </template>
 
 <script>
