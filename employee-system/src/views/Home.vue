@@ -57,7 +57,7 @@ export default({
   data(){
     return {
       allemployees:[
-        {id:1,name:"Abu Jafar",address:"Noakhali", selected: false},
+        {id:1,name:"Abu Jafar",address:"Noakhali", selected:true},
         {id:2,name:"Md Rahman",address:"Dhaka", selected: true}
                   ],
                   name:"",

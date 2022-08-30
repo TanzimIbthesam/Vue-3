@@ -42,8 +42,16 @@
             }
         },
         methods:{
-            deleteEmployees(){
-                console.log("Delete");
+            deleteEmployees(id){
+                console.log(id);
+                 let filteredEmployees=this.$props.ALL_FILTERED_EMPLOYEES_LIST;
+                 
+                 console.log('ALL_FILTERED_EMPLOYEES_LIST', this.ALL_FILTERED_EMPLOYEES_LIST);
+                 
+                 filteredEmployees.find(el=> el.id ===  id).selected = false
+
+                 console.log('after', filteredEmployees);
+                
             }
         }
         
