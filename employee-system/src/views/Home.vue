@@ -4,12 +4,15 @@
       <!-- Left Section -->
       <AllEmployee 
         :ALL_EMPLOYEES_LIST="allemployees"
-        @selectedChange="change"
+        @selectedChange="change(id)"
         /> 
 
 
       <div class="col-9">
         <AddEmployee @add-new-employee="addEmployeeHandler($event )" />
+        <Table 
+        :ALL_FILTERED_EMPLOYEES_LIST="selectedEmployees"
+        />
         <!-- <table class="table">
           <thead>
             <tr>
@@ -43,12 +46,13 @@
 import AllEmployee from "@/components/AllEmployee.vue";
 import FilteredEmployee from "../components/FilteredEmployee.vue";
 import AddEmployee from "@/components/AddEmployee.vue";
-
+import Table from '@/views/Table.vue'
 export default({
   components: {
     AllEmployee,
     FilteredEmployee,
-    AddEmployee
+    AddEmployee,
+    Table
   },
   data(){
     return {
@@ -65,21 +69,16 @@ export default({
     }
   },
   methods:{
-    change(){
-      console.log("Clicked");
-      this.allemployees.find(id=>this.id===id)
+    change(id){
+      console.log("Clicked",id);
+      let p=this.allemployees.find((allemployee)=>{
+       return  allemployee.id === id
+       })
+       
 
     },
 
-    // handleSubmit(){
-    //     this.allemployees.push({
-    //       name:this.form.name,
-    //       location:this.form.location
-    //     })
-    //     this.form=''
-        
-         
-    // }
+  
 
     addEmployeeHandler(value) {
       this.allemployees.unshift({

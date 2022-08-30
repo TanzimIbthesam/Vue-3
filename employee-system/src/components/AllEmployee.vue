@@ -7,7 +7,7 @@
         <div class="text-white">
             <div class="d-flex justify-content-between">
                 <div>{{employee.name}}</div> 
-                <input type="checkbox" @click="selectedChange">
+                <input type="checkbox" @click="selectedChange(id)">
             </div>
             <p class="text-left">{{employee.address}}</p>
         </div>
@@ -22,11 +22,13 @@ export default({
     
     props:['ALL_EMPLOYEES_LIST'],
     data(){
-        return ''
+        return {
+            
+        }
     },
     methods: {
-        selectedChange(){
-            this.$emit('selectedChange')
+        selectedChange(id){
+            this.$emit('selectedChange',id)
         }
     }
 })

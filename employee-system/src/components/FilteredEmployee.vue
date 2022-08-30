@@ -5,7 +5,7 @@
       <td>{{selected.address}}</td>
       <td><div class="d-flex">
         <button class="btn btn-primary">Edit</button>
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger" @click="handleDelete(id)" >Delete</button>
       </div></td>
     </div>
 </template>
@@ -14,9 +14,14 @@
 export default({
     props:['selected'],
     data(){
-        return {
+        return {   
 
         }
+    },
+    methods:{
+      handleDelete(){
+        this.$emit('delete_employees',id)
+      }
     }
 })
 </script>
