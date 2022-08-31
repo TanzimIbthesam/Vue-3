@@ -64,6 +64,8 @@ export default({
         name:value.name,
         address:value.address
       })
+      value.name='',
+      value.address=''
     }
     
   },
