@@ -31,10 +31,7 @@ export default({
             console.log('formData', this.formData);
             this.$emit('add-new-employee', this.formData);
 
-            this.formData = {
-                name: null,
-                address: null
-            }
+            
         }
 
     }

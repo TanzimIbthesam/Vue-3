@@ -1,9 +1,11 @@
 <template>
 <div class="col-3 bg-secondary">
     <h4>Employees List</h4>
-    <input type="text" class="form-control my-4" placeholder="Search"  name="" id="">
+    <input type="text" v-model="search" 
+    class="form-control my-4" placeholder="Search"  name="" id=""> 
+    <!-- Allemployees-{{searchEmployees}} -->
     
-    <div v-for="(employee, index) in ALL_EMPLOYEES_LIST" :key="index">
+    <div v-for="(employee, index) in searchEmployees" :key="index">
         <div class="text-white">
             <div class="d-flex justify-content-between">
                 <div>{{employee.name}}</div> 
@@ -17,19 +19,36 @@
 </template>
 
 <script>
+// import Search from "./Search.vue";
 
 export default({
-    
+    components:{
+    //   Search
+    },
     props:['ALL_EMPLOYEES_LIST'],
     data(){
         return {
-            
+            search:''
         }
     },
     methods: {
         selectedChange(id){
             this.$emit('selectedChange',id)
         }
+    },
+    computed:{
+        
+        searchEmployees(){
+    let allemployees=this.$props.ALL_EMPLOYEES_LIST;
+    return allemployees.filter(allemployee=>allemployee.name.includes(this.search)
+    || allemployee.address.includes(this.search)
+    
+    )
+   ;
+
+     
+   }
+        
     }
 })
 </script>
