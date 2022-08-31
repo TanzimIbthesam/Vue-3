@@ -30,8 +30,6 @@ export default({
         handleSubmit(){
             console.log('formData', this.formData);
             this.$emit('add-new-employee', this.formData);
-
-            
         }
 
     }

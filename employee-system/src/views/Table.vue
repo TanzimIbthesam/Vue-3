@@ -51,7 +51,7 @@
                  
                  filteredEmployees.find(el=> el.id ===  id).selected = false
 
-                 console.log('after', filteredEmployees);
+                 console.log('after', filteredEmployees); 
                 
             }
         }

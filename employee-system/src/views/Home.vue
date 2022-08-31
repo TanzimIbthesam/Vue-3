@@ -4,12 +4,13 @@
       <!-- Left Section -->
       <AllEmployee 
         :ALL_EMPLOYEES_LIST="allemployees"
-        @selectedChange="change(id)"
+        @selectedChange="changeHandler($event)"
         /> 
 
 
       <div class="col-9">
-        <AddEmployee @add-new-employee="addEmployeeHandler($event )" />
+        <AddEmployee 
+            @add-new-employee="addEmployeeHandler($event )" />
         <Table 
         
         :ALL_FILTERED_EMPLOYEES_LIST="selectedEmployees"
@@ -36,25 +37,24 @@ export default({
   data(){
     return {
       allemployees:[
-        {id:1,name:"Abu Jafar",address:"Noakhali", selected:true},
-        {id:2,name:"Md Rahman",address:"Dhaka", selected: false}
+                    {id:1,name:"Abu Jafar",address:"Noakhali", selected: false},
+                    {id:2,name:"Md Rahman",address:"Dhaka", selected: false}
                   ],
-                  name:"",
-                  location:"",
-        form:{
-          name:"",
-          location:""
-        }
+      name:"",
+      location:"",
+      form:{
+        name:"",
+        location:""
+      }
     }
   },
   methods:{
-    change(id){
-      console.log("Clicked",id);
-      let p=this.allemployees.find((allemployee)=>{
-       return  allemployee.id === id
+    changeHandler(id){
+      let p = this.allemployees.find((allemployee)=>{
+        return  allemployee.id === id
        })
-       
-
+       p.selected = !p.selected
+        console.log(p.selected);
     },
 
   
