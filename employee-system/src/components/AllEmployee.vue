@@ -34,13 +34,13 @@
         computed:{
             searchEmployees(){
     let allemployees=this.$props.ALL_EMPLOYEES_LIST;
-    return allemployees.filter(allemployee=>allemployee.name.includes(this.search)
-    || allemployee.address.includes(this.search)
-    
-    )
-   ;
-     
-   }
+                        return allemployees.filter(allemployee=>allemployee.name.includes(this.search)
+                        || allemployee.address.includes(this.search)
+                        
+                        )
+                    ;
+                        
+                    }
      
 
 

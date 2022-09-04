@@ -9,7 +9,7 @@
             <h1>Add New Employee</h1>
             <AddEmployee @add-employee="employeeAddHandler($event)" />
            
-            <div class="container">
+            <!-- <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <table class="table">
@@ -43,7 +43,8 @@
                           </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <FilteredEmployee :ALLFILTERED_EMPLOYEES_LIST="selectedEmployees" />
         </div>
     </div>
     </div>
@@ -52,12 +53,13 @@
 <script>
 import AddEmployee from './components/AddEmployee.vue';
 import AllEmployee from './components/AllEmployee.vue';
+import FilteredEmployee from './components/FilteredEmployee.vue';
   export default {
-    components: { AddEmployee, AllEmployee },
+    components: { AddEmployee, AllEmployee, FilteredEmployee },
     data(){
       return {
         allemployees:[
-                    {id:1,name:"Abu Jafar",address:"Noakhali", selected: false},
+                    {id:1,name:"Abu Jafar",address:"Noakhali", selected:true},
                     {id:2,name:"Md Rahman",address:"Dhaka", selected: false}
                   ],
         
@@ -74,6 +76,9 @@ import AllEmployee from './components/AllEmployee.vue';
         }
     },
     computed:{
+      selectedEmployees(){
+       return this.allemployees.filter(allemployee=>allemployee.selected)
+      }
       
     }
 }
