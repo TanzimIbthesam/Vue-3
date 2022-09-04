@@ -15,7 +15,7 @@
               <div v-for="selected in ALL_FILTERED_EMPLOYEES_LIST" :key="selected.id">
                 
               <FilteredEmployee :selected="selected" 
-              @delete_employees="deleteEmployees"
+                @delete_employees="deleteEmployees"
                />
               
               </div>

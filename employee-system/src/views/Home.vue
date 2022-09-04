@@ -4,7 +4,7 @@
       <!-- Left Section -->
       <AllEmployee 
         :ALL_EMPLOYEES_LIST="allemployees"
-        @selectedChange="changeHandler($event)"
+        @selectedChange="change($event)"
         /> 
 
 
@@ -12,8 +12,8 @@
         <AddEmployee 
             @add-new-employee="addEmployeeHandler($event )" />
         <Table 
-        
-        :ALL_FILTERED_EMPLOYEES_LIST="selectedEmployees"
+          :ALL_FILTERED_EMPLOYEES_LIST="selectedEmployees"
+          @edit_employee="editEmployeeHandler($event)"
         />
          
 
@@ -49,7 +49,7 @@ export default({
     }
   },
   methods:{
-    changeHandler(id){
+    change(id){
       let p = this.allemployees.find((allemployee)=>{
         return  allemployee.id === id
        })
@@ -66,7 +66,14 @@ export default({
       })
       value.name='',
       value.address=''
+    },
+
+    editEmployeeHandler(id) {
+      let editedEmployee = this.allemployees.find((allemployee)=>{
+        return  allemployee
+       })
     }
+
     
   },
   computed:{

@@ -4,7 +4,7 @@
       <td>{{selected.name}}</td>
       <td>{{selected.address}}</td>
       <td><div class="d-flex">
-        <button class="btn btn-primary">Edit</button>
+        <button class="btn btn-primary" @click="handleEdit(selected.id)" >Edit</button>
         <button class="btn btn-danger" @click="handleDelete(selected.id)" >Delete</button>
       </div></td>
     </div>
@@ -21,6 +21,10 @@ export default({
     methods:{
       handleDelete(id){
         this.$emit('delete_employees',id)
+      },
+      handleEdit(id){
+        this.$emit('edit-employee',id)
+        console.log(id);
       }
     }
 })
