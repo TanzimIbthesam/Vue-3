@@ -4,31 +4,11 @@
             <div class="col-4">
                <h1>Employee List</h1>
                 <AllEmployee :ALL_EMPLOYEES_LIST="allemployees"/>  
-                
-               
-              
-             
-              
-            
         </div>
         <div class="col-8">
             <h1>Add New Employee</h1>
             <AddEmployee @add-employee="employeeAddHandler($event)" />
-            <!-- <div class="container">
-                <form action="">
-                    <div class="row">
-                        <div class="col-6">
-                            
-                            <input type="text" class="form-control" id="">
-                        </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control" id="">
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary mt-3">SEND</button>
-                </form>
-                
-            </div> -->
+           
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -85,15 +65,16 @@ import AllEmployee from './components/AllEmployee.vue';
 
     },
     methods:{
-         employeeAddHandler(value){
-          this.allemployees.unshift({
-        name:value.name,
-        address:value.address
-      })
-      value.name='',
-      value.address=''
-            
-         }
+        employeeAddHandler(value){
+            this.allemployees.unshift({
+            name:value.name,
+            address:value.address,
+            id: this.allemployees.length + 1
+          })
+        }
+    },
+    computed:{
+      
     }
 }
 </script>

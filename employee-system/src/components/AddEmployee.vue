@@ -34,7 +34,12 @@
         methods:{
             handleSubmit(){
                 console.log("clicked",this.formData);
-                this.$emit('add-employee',this.formData)
+                this.$emit('add-employee',this.formData);
+
+                this.formData = {
+                    name:'',
+                    address:''
+                };
             }
         }
         
