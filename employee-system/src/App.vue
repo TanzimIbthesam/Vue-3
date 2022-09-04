@@ -3,47 +3,12 @@
         <div class="row">
             <div class="col-4">
                <h1>Employee List</h1>
-               <input type="search" name="" class="form-control" placeholder="Search"><br>
-               <div class="card">
-                <div class="card-header">M.Rahman</div>
-
-                <div class="card-body">
-                    <div class="d-flex p-2"> 
-                        <div>Dhaka,Bangladesh</div>
-                        <div><input type="checkbox" class="leftcheckbox" ></div>
-                </div>
-               </div>
-            </div>
-               <div class="card">
-                <div class="card-header">M.Rahman</div>
-
-                <div class="card-body">
-                    <div class="d-flex p-2"> 
-                        <div>Dhaka,Bangladesh</div>
-                        <div><input type="checkbox" class="leftcheckbox" ></div>
-                </div>
-               </div>
-            </div>
-               <div class="card">
-                <div class="card-header">M.Rahman</div>
-
-                <div class="card-body">
-                    <div class="d-flex p-2"> 
-                        <div>Dhaka,Bangladesh</div>
-                        <div><input type="checkbox" class="leftcheckbox" ></div>
-                </div>
-               </div>
-            </div>
-               <div class="card">
-                <div class="card-header">M.Rahman</div>
-
-                <div class="card-body">
-                    <div class="d-flex p-2"> 
-                        <div>Dhaka,Bangladesh</div>
-                        <div><input type="checkbox" class="leftcheckbox" ></div>
-                </div>
-               </div>
-            </div>
+                <AllEmployee :ALL_EMPLOYEES_LIST="allemployees"/>  
+                
+               
+              
+             
+              
             
         </div>
         <div class="col-8">
@@ -106,16 +71,16 @@
 
 <script>
 import AddEmployee from './components/AddEmployee.vue';
+import AllEmployee from './components/AllEmployee.vue';
   export default {
-    components: { AddEmployee },
+    components: { AddEmployee, AllEmployee },
     data(){
       return {
         allemployees:[
                     {id:1,name:"Abu Jafar",address:"Noakhali", selected: false},
                     {id:2,name:"Md Rahman",address:"Dhaka", selected: false}
                   ],
-        name:'',
-        address:'',
+        
       }
 
     },

@@ -5,7 +5,7 @@
                         <div class="col-6">
                             
                             <input type="text" class="form-control" id=""
-                            v-model="formData.email"
+                            v-model="formData.name"
                             >
                         </div>
                         <div class="col-6">
@@ -14,7 +14,7 @@
                             >
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3">SEND</button>
+                    <button type="submit" class="btn btn-primary mt-3">SEND</button>
                 </form>
                 
             </div>
@@ -25,7 +25,7 @@
         data(){
             return {
                 formData:{
-                    email:'',
+                    name:'',
                     address:''
                 },
                 
@@ -33,6 +33,7 @@
         },
         methods:{
             handleSubmit(){
+                console.log("clicked",this.formData);
                 this.$emit('add-employee',this.formData)
             }
         }
