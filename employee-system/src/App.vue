@@ -7,9 +7,13 @@
         </div>
         <div class="col-8">
             <h1>Add New Employee</h1>
-            <AddEmployee @add-employee="employeeAddHandler($event)" />
+            <AddEmployee @add-employee="employeeAddHandler($event)" 
+              :EDIT_EMPLOYEE="editedEmployee"
+            />
             <FilteredEmployee :ALLFILTERED_EMPLOYEES_LIST="selectedEmployees"
             @delete-employees="deleteEmployeeHandler($event)"
+            @edit-employees="editEmployeeHandler($event)"
+            
             />
         </div>
     </div>
@@ -28,22 +32,39 @@ import FilteredEmployee from './components/FilteredEmployee.vue';
                     {id:1,name:"Abu Jafar",address:"Noakhali", selected:false},
                     {id:2,name:"Md Rahman",address:"Dhaka", selected:true}
                   ],
+
+        editedEmployee:null
         
       }
 
     },
     methods:{
         employeeAddHandler(value){
-            this.allemployees.unshift({
-            name:value.name,
-            address:value.address,
-            id: this.allemployees.length + 1
-          })
+          
+          if(value.id){
+            let editIndex = this.allemployees.findIndex(emp=> emp.id == value.id);
+            this.allemployees[editIndex].name= value.name;
+            this.allemployees[editIndex].address = value.address;
+            this.editedEmployee = null
+          } else {
+              this.allemployees.unshift({
+              name:value.name,
+              address:value.address,
+              id: this.allemployees.length + 1
+            })
+          }
         },
+
         deleteEmployeeHandler(value){
             console.log("Clickedddd",value);
             
              this.allemployees.splice(0,1)
+        },
+        editEmployeeHandler(value){
+          console.log("Clickeddd",value);
+          this.editedEmployee = this.allemployees.find((emp)=>{
+           return emp.id === value
+          })
         }
     },
     computed:{

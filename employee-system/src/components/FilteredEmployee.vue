@@ -50,6 +50,7 @@
           },
           handleEdit(id){
             console.log(id);
+            this.$emit('edit-employees',id)
           }
         }
     }

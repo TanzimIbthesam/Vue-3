@@ -22,11 +22,13 @@
 
 <script>
     export default {
+        props:['EDIT_EMPLOYEE'],
         data(){
             return {
                 formData:{
                     name:'',
-                    address:''
+                    address:'',
+                    id: null
                 },
                 
             }
@@ -38,8 +40,20 @@
 
                 this.formData = {
                     name:'',
-                    address:''
+                    address:'',
+                    id: null
                 };
+            }
+        },
+        watch: {
+            EDIT_EMPLOYEE() {
+                if(this.EDIT_EMPLOYEE){
+                    this.formData = {
+                        name:this.EDIT_EMPLOYEE.name,
+                        address:this.EDIT_EMPLOYEE.address,
+                        id:this.EDIT_EMPLOYEE.id
+                    }
+                }
             }
         }
         
