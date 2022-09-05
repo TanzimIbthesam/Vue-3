@@ -8,43 +8,9 @@
         <div class="col-8">
             <h1>Add New Employee</h1>
             <AddEmployee @add-employee="employeeAddHandler($event)" />
-           
-            <!-- <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                    </div>
-                </div>
-            </div> -->
-            <FilteredEmployee :ALLFILTERED_EMPLOYEES_LIST="selectedEmployees" />
+            <FilteredEmployee :ALLFILTERED_EMPLOYEES_LIST="selectedEmployees"
+            @delete-employees="deleteEmployeeHandler($event)"
+            />
         </div>
     </div>
     </div>
@@ -59,8 +25,8 @@ import FilteredEmployee from './components/FilteredEmployee.vue';
     data(){
       return {
         allemployees:[
-                    {id:1,name:"Abu Jafar",address:"Noakhali", selected:true},
-                    {id:2,name:"Md Rahman",address:"Dhaka", selected: false}
+                    {id:1,name:"Abu Jafar",address:"Noakhali", selected:false},
+                    {id:2,name:"Md Rahman",address:"Dhaka", selected:true}
                   ],
         
       }
@@ -73,6 +39,11 @@ import FilteredEmployee from './components/FilteredEmployee.vue';
             address:value.address,
             id: this.allemployees.length + 1
           })
+        },
+        deleteEmployeeHandler(value){
+            console.log("Clickedddd",value);
+            
+             this.allemployees.splice(0,1)
         }
     },
     computed:{

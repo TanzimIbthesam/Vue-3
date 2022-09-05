@@ -18,10 +18,12 @@
                                 <th scope="row">{{filteredemployee.name}}</th>
                                 <td >{{filteredemployee.address}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary">Edit</button>
+                                    <button 
+                                    @click="handleEdit(filteredemployee.id)"
+                                    class="btn btn-primary">Edit</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button @click="handleDelete(filteredemployee.id)" class="btn btn-danger">Delete</button>
                                 </td>
                                 
                               </tr>
@@ -37,7 +39,19 @@
 <script>
     
     export default {
-        props:['ALLFILTERED_EMPLOYEES_LIST']
+        props:['ALLFILTERED_EMPLOYEES_LIST'],
+        methods:{
+          handleDelete(id){
+            // console.log(id);
+            // let filteredEmployees=this.$props.ALLFILTERED_EMPLOYEES_LIST
+            // filteredEmployees.find(el=> el.id ===  id).selected = false
+            this.$emit('delete-employees',id)
+            
+          },
+          handleEdit(id){
+            console.log(id);
+          }
+        }
     }
 </script>
 

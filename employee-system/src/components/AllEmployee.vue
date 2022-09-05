@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="d-flex p-2"> 
                         <div>{{allemployee.address}}</div>
-                        <div><input type="checkbox" class="leftcheckbox" 
+                        <div><input type="checkbox" v-model="allemployee.selected" class="leftcheckbox" 
                             style="margin-left:20px"
                             ></div>
                 </div>
