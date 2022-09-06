@@ -1,9 +1,10 @@
 <template>
   <body id="page-app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
               
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile mx-auto mb-2" src="assets/img/JERPLOGO2.png" alt=""  style="border:none;"/></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile mx-auto mb-2" src="../assets/img/JERPLOGO2.png" alt=""  style="border:none;"/></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -12,10 +13,10 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">BLOG</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#"><hr></a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Example Blog</a></li>
-                    <!-- vue component -->
-                    <!-- <li class="nav-item" :key="blog.id" v-for="blog,index in blogs" > <a class="nav-link" :href="'#'+blog.id" > {{ blog.title }} </a>  </li>                     -->
+                   
+                    <li class="nav-item" :key="blog.id" v-for="blog,index in blogs" > <a class="nav-link" :href="'#'+blog.id" > {{ blog.title }} </a>  </li>                    
                 </ul>
-            </div>
+            </div> 
         </nav>
         <div class="container-fluid p-0">
             <!-- About-->
@@ -112,34 +113,12 @@
                     
                 </div>
             </section>
-<hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">                    
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Blog Title</h3>
-                            <div class="subheading mb-3">Blog Author</div>
-                            <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">11 March 2013 : 10am</span></div>
-                    </div>
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h5 class="mb-0">Blog Comment<hr></h5>
-                            <div class="subheading mb-1" style="font-size:11pt;"><i class="fa fa-user"></i> Commenter 1 <div class="float-right"><i class="fa fa-clock"></i> 2021-03-23 10.05 pm</div></div>
-                            <p>Comment 1</p>
-							<div class="subheading mb-1" style="font-size:11pt;"><i class="fa fa-user"></i> Commenter 2 <div class="float-right"><i class="fa fa-clock"></i> 2021-03-23 10.05 pm</div></div>
-                            <p>Comment 2</p>							
-							<div class="subheading mb-1"><button class="btn btn-sm btn-info">New Comment</button></div>
-                        </div>                        
-                    </div>
-                    
-                </div>
-            </section>
-           
-                             
+
+            <!-- <div v-for="blg in allBlogs" ><Holder key="blg.id" :blg="blg" />            
+            </div>                  -->
         </div>
+    </div>
+        
   </body>
 </template>
 
