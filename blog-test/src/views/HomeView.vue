@@ -1,7 +1,8 @@
 <template>
   <body id="page-app">
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <LeftNavbar />
+        <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
               
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile mx-auto mb-2" src="../assets/img/JERPLOGO2.png" alt=""  style="border:none;"/></span>
@@ -17,7 +18,7 @@
                     <li class="nav-item" :key="blog.id" v-for="blog,index in blogs" > <a class="nav-link" :href="'#'+blog.id" > {{ blog.title }} </a>  </li>                    
                 </ul>
             </div> 
-        </nav>
+        </nav> -->
         <div class="container-fluid p-0">
             <!-- About-->
             <section class="resume-section" id="about">
@@ -123,13 +124,14 @@
 </template>
 
 <script>
+import LeftNavbar from "../components/LeftNavbar.vue";
 // @ is an alias to /src
 
 
 export default {
   name: 'HomeView',
   components: {
-    
-  }
+    LeftNavbar
+}
 }
 </script>
