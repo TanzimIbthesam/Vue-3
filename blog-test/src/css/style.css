@@ -9987,6 +9987,8 @@ h3 {
 }
 body {
   /* padding-top: 3.375rem; */
+  /* margin-left:50px; */
+  margin-left:-130px;
   color: #6c757d;
 }
 
@@ -9994,8 +9996,10 @@ body {
   body {
     padding-top: 0;
     padding-left: 17rem;
+    
   }
 }
+
 h1,
 h2,
 h3,
