@@ -1,11 +1,5 @@
 <template>
-  <body id="page-app">
-    <div id="app">
-        <LeftNavbar />
-        
-        <div class="container-fluid p-0">
-            <!-- About-->
-            <!-- <section class="resume-section" id="about">
+     <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <h1 class="mb-0">
                         Vue Test
@@ -72,53 +66,15 @@
 					</p>
                     
                 </div>
-            </section> -->
-            <Instructions />
-            <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">                    
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Blog Title</h3>
-                            <div class="subheading mb-3">Blog Author</div>
-                            <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">11 March 2013 : 10am</span></div>
-                    </div>
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h5 class="mb-0">Blog Comment<hr></h5>
-                            <div class="subheading mb-1" style="font-size:11pt;"><i class="fa fa-user"></i> Commenter 1 <div class="float-right"><i class="fa fa-clock"></i> 2021-03-23 10.05 pm</div></div>
-                            <p>Comment 1</p>
-							<div class="subheading mb-1" style="font-size:11pt;"><i class="fa fa-user"></i> Commenter 2 <div class="float-right"><i class="fa fa-clock"></i> 2021-03-23 10.05 pm</div></div>
-                            <p>Comment 2</p>							
-							<div class="subheading mb-1"><button class="btn btn-sm btn-info">New Comment</button></div>
-                        </div>                        
-                    </div>
-                    
-                </div>
             </section>
-
-            <!-- <div v-for="blg in allBlogs" ><Holder key="blg.id" :blg="blg" />            
-            </div>                  -->
-        </div>
-    </div>
-        
-  </body>
 </template>
 
 <script>
-import LeftNavbar from "../components/LeftNavbar.vue";
-import Instructions from "@/components/Instructions.vue";
-// @ is an alias to /src
-
-
-export default {
-  name: 'HomeView',
-  components: {
-    LeftNavbar,
-    Instructions
-}
-}
+    export default {
+        
+    }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
