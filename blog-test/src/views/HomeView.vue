@@ -13,7 +13,10 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                          <div class="flex-grow-1">
                             <div v-for="allblog in allblogs" :key="allblog.id">
-                                <h3 class="mb-0">{{allblog.title}}</h3>
+                    
+                <h3 class="mb-0"><router-link :to="{name:'SingleBlog',
+                params:{id:allblog.id}
+                }" >{{allblog.title}}</router-link></h3>
                             <div class="subheading mb-3">{{allblog.created_by}}</div>
                             <div v-for="all_blog in allblog.all_blogs" :key="all_blog.id">
                                 <p>{{all_blog.blog_detail}}</p>
@@ -65,6 +68,7 @@ import Instructions from "@/components/Instructions.vue";
 import axios from 'axios'
 import Allblogs from "@/components/Allblogs.vue";
 export default {
+    
   name: 'HomeView',
   components: {
     LeftNavbar,
